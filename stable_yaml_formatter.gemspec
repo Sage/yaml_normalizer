@@ -1,34 +1,31 @@
 # coding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'stable_yaml_formatter/version'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
-  spec.name          = "stable_yaml_formatter"
+  spec.name          = 'stable_yaml_formatter'
   spec.version       = StableYamlFormatter::VERSION
-  spec.authors       = ["Wolfgang Teuber"]
-  spec.email         = ["wolfgang.teuber@sage.de"]
+  spec.authors       = ['Wolfgang Teuber']
+  spec.email         = ['wolfgang.teuber@sage.com']
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
+  spec.summary       = 'Stable Yaml Formatter normalizes YAML files'
+  spec.description   = "Stable Yaml Formatter follows the notion that there is
+    a normalized YAML file format. It re-formats YAML files in a way that the
+    results closely match Psych's output. Stable Yaml Formatter ensures that the
+    original file and the resulting file are 100% identical to Psych (stable
+    change)."
+  spec.homepage      = 'https://github.com/Sage/stable_yaml_formatter'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.bindir        = 'bin'
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.require_paths = ['lib']
 
   spec.add_dependency 'psych', '~> 2.2'
 

@@ -1,41 +1,54 @@
-# StableYamlFormatter
+# Stable Yaml Formatter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stable_yaml_formatter`. To experiment with that code, run `bin/console` for an interactive prompt.
+YAML is a file format that's human-readable and very common among Ruby projects.
+The [YAML standard](http://yaml.org/) is well-defined and supported by many
+programming languages. Ruby's default YAML parser and emitter is
+[Psych](https://github.com/ruby/psych#psych).
 
-TODO: Delete this and the text above, and describe your gem
+Stable Yaml Formatter follows the notion that there is a normalized YAML file
+format. It re-formats YAML files in a way that the results closely match Psych's
+output. Stable Yaml Formatter ensures that the original file and the resulting
+file are 100% identical to Psych (stable change).
+
+Stable Yaml Formatter provides
+* **Alphabetic Ordering** (TODO)
+  * to improve (human-)readability and maintainability
+  * to avoid douplicate keys
+* **Paragraphs** (TODO)
+  * to improve (human-)readability and maintainability
+* **Limited Line Length** (TODO)
+  * to improve (human-)readability and maintainability
+* **Update Verification** (TODO)
+  * to ensure changes are actually "stable"
+
+Stable Yaml Formatter can be used in frameworks like Rails, Sinatra or Cuba, but
+it runs stand-alone as well.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'stable_yaml_formatter'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install stable_yaml_formatter
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ stable_yaml_formatter my_yaml_file.yml
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run
+`rake spec` to run the tests. You can also run `bin/console` for an interactive
+prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release`, which will create a git tag for the version, push
+git commits and tags, and push the `.gem` file to
+[rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/stable_yaml_formatter.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Sage/stable_yaml_formatter.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

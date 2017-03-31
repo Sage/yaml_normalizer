@@ -30,7 +30,22 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.13"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_dependency 'psych', '~> 2.2'
+
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'cane'
+  spec.add_development_dependency 'flay'
+  spec.add_development_dependency 'flog'
+  spec.add_development_dependency 'inch'
+  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'redcarpet'
+  spec.add_development_dependency 'github-markup'
+  spec.add_development_dependency 'awesome_print'
 end

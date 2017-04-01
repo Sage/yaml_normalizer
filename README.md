@@ -44,6 +44,29 @@ release a new version, update the version number in `version.rb`, and then run
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
+##### Install from source locally
+    $ bundle exec rake install:local
+
+
+##### Run RSpec
+    $ bundle exec rake spec
+
+
+##### Run Rubocop
+    $ bundle exec rake rubocop
+    $ bundle exec rake rubocop:auto_correct
+
+#### Test Tests
+##### Kill all mutants
+    $ bundle exec rake mutant
+
+#### Test Documentation
+##### Using Yard
+    $ bundle exec rake yard
+
+##### Using Inch
+    $ bundle exec rake inch
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Sage/stable_yaml_formatter.

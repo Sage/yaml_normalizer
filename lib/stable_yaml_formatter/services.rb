@@ -6,3 +6,5 @@ module StableYamlFormatter
   module Services
   end
 end
+
+require 'stable_yaml_formatter/services/base'

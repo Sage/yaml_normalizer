@@ -13,6 +13,15 @@ else
 end
 
 require 'stable_yaml_formatter'
+
+# Configure unit test suite
+module SpecConfig
+  def data_path
+    File.expand_path(File.join(File.dirname(__FILE__), 'data'))
+  end
+  module_function :data_path
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
 end

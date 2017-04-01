@@ -18,8 +18,9 @@ Stable Yaml Formatter provides
   * to improve (human-)readability and maintainability
 * **Limited Line Length** (TODO)
   * to improve (human-)readability and maintainability
-* **Update Verification** (TODO)
-  * to ensure changes are actually "stable"
+* **Verified Changes only** (TODO)
+  * to ensure changes are actually "stable" by checking if input and output YAML
+    files are identical as far as the Psych parser can tell.
 
 Stable Yaml Formatter can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.

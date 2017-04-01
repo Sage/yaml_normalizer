@@ -4,6 +4,7 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'stable_yaml_formatter/version'
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = 'stable_yaml_formatter'
   spec.version       = StableYamlFormatter::VERSION
@@ -24,11 +25,28 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'psych', '~> 2.2'
-  spec.add_dependency 'pmap', '~> 1.1'
+  spec.add_dependency 'peach', '~> 0.5'
 
-  [
-    'bundler', 'rake', 'rspec', 'parallel_tests', 'mutant-rspec', 'rubocop',
-    'cane', 'flay', 'flog', 'inch', 'coveralls', 'guard', 'guard-rubocop',
-    'guard-rspec', 'yard', 'redcarpet', 'github-markup', 'awesome_print'
-  ].each { |dep| spec.add_development_dependency(dep) }
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'parallel_tests'
+  spec.add_development_dependency 'mutant-rspec'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'cane'
+  spec.add_development_dependency 'flay'
+  spec.add_development_dependency 'flog'
+  spec.add_development_dependency 'inch'
+  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'redcarpet'
+  spec.add_development_dependency 'github-markup'
+  spec.add_development_dependency 'awesome_print'
+  spec.add_development_dependency 'pry'
+  # Ruby 2.4.0 isn't supported by the latest pry-doc today (2017-04-07)
+  # spec.add_development_dependency 'pry-doc'
+  spec.add_development_dependency 'pry-byebug'
 end

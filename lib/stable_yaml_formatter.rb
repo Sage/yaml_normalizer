@@ -6,4 +6,5 @@ module StableYamlFormatter
 end
 
 require 'stable_yaml_formatter/version'
+require 'stable_yaml_formatter/refinements'
 require 'stable_yaml_formatter/services'

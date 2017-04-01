@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'stable_yaml_formatter'
+
+StableYamlFormatter::Services::Normalize.call(*ARGV)

@@ -1,4 +1,4 @@
-# Stable Yaml Formatter
+# YamlNormalizer
 
 YAML is a file format that's human-readable and very common among Ruby projects.
 The [YAML standard](http://yaml.org/) is well-defined and supported by many
@@ -18,9 +18,10 @@ Stable Yaml Formatter provides
   * to improve (human-)readability and maintainability
 * **Limited Line Length** (TODO)
   * to improve (human-)readability and maintainability
-* **Verified Changes only** (TODO)
-  * to ensure changes are actually "stable" by checking if input and output YAML
-    files are identical as far as the Psych parser can tell.
+* **Non-breaking Changes only** (TODO)
+  * to ensure changes do not impact functional parts of the application.
+    YamlNormalizer considers changing the order of YAML file entries as
+    non-breaking.
 
 Stable Yaml Formatter can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.
@@ -56,10 +57,6 @@ git commits and tags, and push the `.gem` file to
 ##### Run parallel RSpec
     $ bundle exec parallel_rspec spec/
 
-##### Run Rubocop
-    $ bundle exec rake rubocop
-    $ bundle exec rake rubocop:auto_correct
-
 #### Test Tests
 ##### Kill all mutants
     $ bundle exec rake mutant
@@ -72,8 +69,9 @@ git commits and tags, and push the `.gem` file to
     $ bundle exec rake inch
 
 #### Test static code metrics
-##### Run Cane (general code quality)
-    $ bundle exec cane
+##### Run Rubocop and Rubocop's auto_correct
+    $ bundle exec rake rubocop
+    $ bundle exec rake rubocop:auto_correct
 
 ##### Run Flay (duplication)
     $ bundle exec flay

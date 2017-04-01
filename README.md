@@ -25,11 +25,9 @@ Stable Yaml Formatter can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.
 
 ## Installation
-
     $ gem install stable_yaml_formatter
 
 ## Usage
-
     $ stable_yaml_formatter my_yaml_file.yml
 
 ## Development
@@ -47,10 +45,15 @@ git commits and tags, and push the `.gem` file to
 ##### Install from source locally
     $ bundle exec rake install:local
 
+#### Test Implementation
+##### Run Guard (with Rspec and Rubocop)
+    $ bundle exec guard
 
 ##### Run RSpec
     $ bundle exec rake spec
 
+##### Run parallel RSpec
+    $ bundle exec parallel_rspec spec/
 
 ##### Run Rubocop
     $ bundle exec rake rubocop
@@ -66,6 +69,16 @@ git commits and tags, and push the `.gem` file to
 
 ##### Using Inch
     $ bundle exec rake inch
+
+#### Test static code metrics
+##### Run Cane (general code quality)
+    $ bundle exec cane
+
+##### Run Flay (duplication)
+    $ bundle exec flay
+
+##### Run Flog (complexity)
+    $ bundle exec flog .
 
 ## Contributing
 

@@ -2,14 +2,14 @@
 
 require 'peach'
 
-module StableYamlFormatter
+module YamlNormalizer
   module Services
     # Normalize is a Service that provides functionality to
     class Normalize < Base
       attr_reader :files
 
-      using StableYamlFormatter::Refinements::HashSortByKey
-      using StableYamlFormatter::Refinements::HashNamespaced
+      using YamlNormalizer::Refinements::HashSortByKey
+      using YamlNormalizer::Refinements::HashNamespaced
 
       def initialize(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StableYamlFormatter
+module YamlNormalizer
   module Refinements
     # Refine Hash to add method sort_by_key
     module HashSortByKey

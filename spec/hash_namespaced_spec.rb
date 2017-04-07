@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-describe StableYamlFormatter::Refinements::HashNamespaced do
+describe YamlNormalizer::Refinements::HashNamespaced do
   context 'using HashSortByKey refinement' do
-    using StableYamlFormatter::Refinements::HashNamespaced
+    using YamlNormalizer::Refinements::HashNamespaced
 
     subject { hash.namespaced }
     let(:hash) { { b: { z: 20, x: 10 }, a: nil } }

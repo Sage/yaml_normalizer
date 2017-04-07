@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe StableYamlFormatter do
+describe YamlNormalizer do
   it 'has a version number' do
-    expect(StableYamlFormatter::VERSION).not_to be nil
+    expect(YamlNormalizer::VERSION).not_to be nil
   end
 end

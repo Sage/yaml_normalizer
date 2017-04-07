@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.describe StableYamlFormatter::Services::Normalize do
+RSpec.describe YamlNormalizer::Services::Normalize do
   subject { described_class.new(*args) }
 
   let(:path) { "#{SpecConfig.data_path}#{File::SEPARATOR}" }

@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-describe StableYamlFormatter::Refinements::HashSortByKey do
+describe YamlNormalizer::Refinements::HashSortByKey do
   context 'using HashSortByKey refinement' do
-    using StableYamlFormatter::Refinements::HashSortByKey
+    using YamlNormalizer::Refinements::HashSortByKey
 
     subject { hash.sort_by_key(recursive) }
     let(:recursive) { true }

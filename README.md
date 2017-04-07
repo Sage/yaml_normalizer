@@ -5,12 +5,12 @@ The [YAML standard](http://yaml.org/) is well-defined and supported by many
 programming languages. Ruby's default YAML parser and emitter is
 [Psych](https://github.com/ruby/psych#psych).
 
-Stable Yaml Formatter follows the notion that there is a normalized YAML file
+Yaml Normalizer follows the notion that there is a normalized YAML file
 format. It re-formats YAML files in a way that the results closely match Psych's
-output. Stable Yaml Formatter ensures that the original file and the resulting
+output. Yaml Normalizer ensures that the original file and the resulting
 file are 100% identical to Psych (stable change).
 
-Stable Yaml Formatter provides
+Yaml Normalizer provides
 * **Alphabetic Ordering** (TODO)
   * to improve (human-)readability and maintainability
   * to avoid douplicate keys
@@ -23,14 +23,14 @@ Stable Yaml Formatter provides
     YamlNormalizer considers changing the order of YAML file entries as
     non-breaking.
 
-Stable Yaml Formatter can be used in frameworks like Rails, Sinatra or Cuba, but
+Yaml Normalizer can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.
 
 ## Installation
-    $ gem install stable_yaml_formatter
+    $ gem install yaml_normalizer
 
 ## Usage
-    $ stable_yaml_formatter my_yaml_file.yml
+    $ yaml_normalizer my_yaml_file.yml
 
 ## Development
 
@@ -81,7 +81,7 @@ git commits and tags, and push the `.gem` file to
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Sage/stable_yaml_formatter.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Sage/yaml_normalizer.
 
 
 ## License

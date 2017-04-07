@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'stable_yaml_formatter'
+require 'yaml_normalizer'
 
-module StableYamlFormatter
+module YamlNormalizer
   # Provides Rake task integration
   class RakeTask < ::Rake::TaskLib
     # @return [String] name of the Rake task
@@ -13,7 +13,7 @@ module StableYamlFormatter
     # @param name [String] name of the Rake task
     # @param *args [Array] arguments to be passed to Normalize.call
     # @param &block [Proc] optional, evaluated inside the task definition
-    def initialize(name = 'stable_yaml_formatter', *args, &block)
+    def initialize(name = 'yaml_normalizer', *args, &block)
       @name = name
       @args = args
       yield(self) if block
@@ -24,7 +24,7 @@ module StableYamlFormatter
 
     # @return [void]
     def normalize
-      ::StableYamlFormatter::Services::Normalize.call('**/*')
+      ::YamlNormalizer::Services::Normalize.call('**/*')
     end
   end
 end

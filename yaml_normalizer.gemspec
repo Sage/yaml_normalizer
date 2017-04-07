@@ -3,21 +3,21 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'stable_yaml_formatter/version'
+require 'yaml_normalizer/version'
 # rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
-  spec.name          = 'stable_yaml_formatter'
-  spec.version       = StableYamlFormatter::VERSION
+  spec.name          = 'yaml_normalizer'
+  spec.version       = YamlNormalizer::VERSION
   spec.authors       = ['Wolfgang Teuber']
   spec.email         = ['wolfgang.teuber@sage.com']
 
-  spec.summary       = 'Stable Yaml Formatter normalizes YAML files'
-  spec.description   = "Stable Yaml Formatter follows the notion that there is
+  spec.summary       = 'Yaml Normalizer normalizes YAML files'
+  spec.description   = "Yaml Normalizer follows the notion that there is
     a normalized YAML file format. It re-formats YAML files in a way that the
-    results closely match Psych's output. Stable Yaml Formatter ensures that the
+    results closely match Psych's output. Yaml Normalizer ensures that the
     original file and the resulting file are 100% identical to Psych (stable
     change)."
-  spec.homepage      = 'https://github.com/Sage/stable_yaml_formatter'
+  spec.homepage      = 'https://github.com/Sage/yaml_normalizer'
   spec.license       = 'MIT'
   spec.files         = Dir['lib/**/*.rb']
   spec.bindir        = 'bin'

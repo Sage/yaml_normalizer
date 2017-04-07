@@ -2,7 +2,7 @@
 
 require 'psych'
 
-module StableYamlFormatter
+module YamlNormalizer
   module Services
     # describe!
     class IsYaml < Base

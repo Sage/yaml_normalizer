@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 
 ruby '2.4'
 
-# Specify your gem's dependencies in stable_yaml_formatter.gemspec
+# Specify your gem's dependencies in yaml_normalizer.gemspec
 gemspec

@@ -59,7 +59,11 @@ git commits and tags, and push the `.gem` file to
 
 #### Test Tests
 ##### Kill all mutants
+    $ git checkout mutant
+    $ git rebase <your_branch>
     $ bundle exec rake mutant
+    $ git reset origin/mutant --hard
+    $ git checkout <your_branch>
 
 #### Test Documentation
 ##### Using Yard

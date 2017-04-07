@@ -12,7 +12,7 @@ else
   end
 end
 
-require 'stable_yaml_formatter'
+require 'yaml_normalizer'
 
 # Configure unit test suite
 module SpecConfig

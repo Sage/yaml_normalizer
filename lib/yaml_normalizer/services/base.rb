@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StableYamlFormatter
+module YamlNormalizer
   module Services
     # The Base Service provides a convenience class method "call" to initialize
     # the Service with the given arguments and call the method "call" on the

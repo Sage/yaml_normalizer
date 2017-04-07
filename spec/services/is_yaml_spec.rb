@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe StableYamlFormatter::Services::IsYaml do
+RSpec.describe YamlNormalizer::Services::IsYaml do
   describe '#call' do
     subject { described_class.new(file).call }
 

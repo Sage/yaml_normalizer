@@ -11,14 +11,14 @@ output. Yaml Normalizer ensures that the original file and the resulting
 file are 100% identical to Psych (stable change).
 
 Yaml Normalizer provides
-* **Alphabetic Ordering** (TODO)
+* **Alphabetic Ordering**
   * to improve (human-)readability and maintainability
   * to avoid douplicate keys
 * **Paragraphs** (TODO)
   * to improve (human-)readability and maintainability
-* **Limited Line Length** (TODO)
+* **Limited Line Length**
   * to improve (human-)readability and maintainability
-* **Non-breaking Changes only** (TODO)
+* **Non-breaking Changes only**
   * to ensure changes do not impact functional parts of the application.
     YamlNormalizer considers changing the order of YAML file entries as
     non-breaking.

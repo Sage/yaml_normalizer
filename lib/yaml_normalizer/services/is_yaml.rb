@@ -4,17 +4,25 @@ require 'psych'
 
 module YamlNormalizer
   module Services
-    # describe!
+    # IsYaml is a Service Class that provides functionality to check if a file
+    # is a parseable non-scalar YAML file.
+    # @exmaple
+    #   is_yaml = YamlNormalizer::Services::IsYaml.new('path/to/file.yml')
+    #   result = is_yaml.call
     class IsYaml < Base
+      # file is the file path String to be regarded
       attr_reader :file
 
+      # Create an IsYaml service object by calling .new and passing a file path
+      # String.
+      # @param file [String] file path to be regarded
       def initialize(file)
         @file = file.to_s
       end
 
       # Return true if given file is a valid YAML file
       def call
-        file? && parsable? && !scalar?
+        file? && parseable? && !scalar?
       end
 
       private
@@ -25,7 +33,7 @@ module YamlNormalizer
 
       # The current implementation does not require parsable? to return a
       # boolean value
-      def parsable?
+      def parseable?
         Psych.load_file(file)
       rescue Psych::SyntaxError
         false

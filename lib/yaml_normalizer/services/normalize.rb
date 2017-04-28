@@ -4,10 +4,18 @@ require 'peach'
 
 module YamlNormalizer
   module Services
-    # Normalize is a Service that provides functionality to
+    # Normalize is a service class that provides functionality to update giving
+    # YAML files to a standardized (normalized) format.
+    # @exmaple
+    #   normalize = YamlNormalizer::Services::Normalize.new('path/to/*.yml')
+    #   result = normalize.call
     class Normalize < Base
+      # files is a sorted array of file path Strings
       attr_reader :files
 
+      # Create a Normalize service object by calling .new and passing one or
+      # more String that are interpreted as file glob pattern.
+      # @param *args [Array] a list of file glob patterns
       def initialize(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq

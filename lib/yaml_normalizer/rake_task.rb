@@ -10,6 +10,11 @@ module YamlNormalizer
     # @return [Array] arguments to be passed to Suggest.run
     attr_accessor :args
 
+    # Create a YamlNormalizer rake task object.
+    # Use this to
+    # @example
+    #   In your Rakefile, add:
+    #     YamlNormalizer::RakeTask.new
     # @param name [String] name of the Rake task
     # @param *args [Array] arguments to be passed to Normalize.call
     # @param &block [Proc] optional, evaluated inside the task definition

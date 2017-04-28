@@ -8,9 +8,6 @@ module YamlNormalizer
     class Normalize < Base
       attr_reader :files
 
-      using YamlNormalizer::Refinements::HashSortByKey
-      using YamlNormalizer::Refinements::HashNamespaced
-
       def initialize(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq
@@ -40,6 +37,7 @@ module YamlNormalizer
 
       def normalize_yaml(yaml)
         hashes = Psych.parse_stream(yaml).transform
+        hashes.each { |hash| hash.extend(Ext::SortByKey) }
         hashes.map(&:sort_by_key).map(&:to_yaml).join
       end
 
@@ -50,7 +48,9 @@ module YamlNormalizer
       end
 
       def parse(yaml)
-        Psych.parse_stream(yaml).transform
+        ary = Psych.parse_stream(yaml).transform
+        ary.each { |hash| hash.extend(Ext::Namespaced) }
+        ary
       end
     end
   end

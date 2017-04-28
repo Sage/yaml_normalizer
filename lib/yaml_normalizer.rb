@@ -6,5 +6,5 @@ module YamlNormalizer
 end
 
 require 'yaml_normalizer/version'
-require 'yaml_normalizer/refinements'
+require 'yaml_normalizer/ext'
 require 'yaml_normalizer/services'

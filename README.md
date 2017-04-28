@@ -8,12 +8,12 @@ programming languages. Ruby's default YAML parser and emitter is
 Yaml Normalizer follows the notion that there is a normalized YAML file
 format. It re-formats YAML files in a way that the results closely match Psych's
 output. Yaml Normalizer ensures that the original file and the resulting
-file are 100% identical to Psych (stable change).
+file are identical regarding the resulting Hash from Psych (stable change).
 
 Yaml Normalizer provides
 * **Alphabetic Ordering**
   * to improve (human-)readability and maintainability
-  * to avoid douplicate keys
+  * to avoid duplicate keys
 * **Paragraphs** (TODO)
   * to improve (human-)readability and maintainability
 * **Limited Line Length**
@@ -84,10 +84,16 @@ git commits and tags, and push the `.gem` file to
     $ bundle exec flog .
 
 ## Contributing
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/Sage/yaml_normalizer.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Sage/yaml_normalizer.
-
+### Engineering Standards
+We want to keep engineering standards high and use code reviews and test tools
+to help with that. Yaml Normalizer is designed to have no side effects,
+especially regarding Ruby Core and Standard Lib implementation. Also, we want to
+keep rubocop, inch and mutant happy. We will add more details on PRs if needed.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).

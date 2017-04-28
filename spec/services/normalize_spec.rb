@@ -76,6 +76,7 @@ RSpec.describe YamlNormalizer::Services::Normalize do
     context 'not stable' do
       let(:file) { 'valid.yml' }
       let(:other) { 'valid_normalized.yml' }
+      let(:defect) { [{ error: nil }.extend(YamlNormalizer::Ext::Namespaced)] }
 
       it 'prints out an error to STDERR' do
         Tempfile.open(file) do |yaml|
@@ -86,7 +87,7 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           allow(normalize).to receive(:parse)
             .with(File.read(path + file)).and_call_original
           allow(normalize).to receive(:parse)
-            .with(File.read(path + other)).and_return([error: nil])
+            .with(File.read(path + other)).and_return(defect)
 
           expect { normalize.call }
             .to output("[ERROR]      Could not normalize #{yaml.path}\n")

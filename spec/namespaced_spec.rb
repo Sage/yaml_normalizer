@@ -2,11 +2,10 @@
 
 require 'spec_helper'
 
-describe YamlNormalizer::Refinements::HashNamespaced do
-  context 'using HashSortByKey refinement' do
-    using YamlNormalizer::Refinements::HashNamespaced
-
-    subject { hash.namespaced }
+describe YamlNormalizer::Ext::Namespaced do
+  context 'extended Hash instances with Namespaced behaviour' do
+    subject { hash.extend(described_module).namespaced }
+    let(:described_module) { described_class }
     let(:hash) { { b: { z: 20, x: 10 }, a: nil } }
 
     it 'does not modify the original object' do
@@ -18,7 +17,7 @@ describe YamlNormalizer::Refinements::HashNamespaced do
     end
   end
 
-  it 'does not affect code outside the context of HashNamespaced refinement' do
+  it 'does not modify Ruby Core class Hash' do
     expect { {}.namespaced }.to raise_error(NoMethodError)
   end
 end

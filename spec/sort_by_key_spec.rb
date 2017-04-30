@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe YamlNormalizer::Ext::SortByKey do
-  context 'extended Hash instances with SortByKey behaviour' do
+  context 'extended Hash instances with "sort_by_key"' do
     subject { hash.extend(described_module).sort_by_key(recursive) }
     let(:described_module) { described_class }
     let(:recursive) { true }

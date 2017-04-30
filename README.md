@@ -48,6 +48,9 @@ git commits and tags, and push the `.gem` file to
     $ bundle exec rake install:local
 
 #### Test Implementation
+##### Run CI task
+    $ bundle exec rake
+
 ##### Run Guard (with Rspec and Rubocop)
     $ bundle exec guard
 

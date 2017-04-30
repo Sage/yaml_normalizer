@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe YamlNormalizer::Ext::Namespaced do
-  context 'extended Hash instances with Namespaced behaviour' do
+  context 'extended Hash instances with "namespaced"' do
     subject { hash.extend(described_module).namespaced }
     let(:described_module) { described_class }
     let(:hash) { { b: { z: 20, x: 10 }, a: nil } }

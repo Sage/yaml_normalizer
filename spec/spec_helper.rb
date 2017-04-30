@@ -16,6 +16,7 @@ require 'yaml_normalizer'
 
 # Configure unit test suite
 module SpecConfig
+  # @return [String] path to files used in specs
   def data_path
     File.expand_path(File.join(File.dirname(__FILE__), 'data'))
   end

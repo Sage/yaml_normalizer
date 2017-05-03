@@ -27,7 +27,13 @@ ensure
   output.close
 end
 
-def ci_msg(msg, check, time)
+def ci_begin_msg(msg)
+  puts '################################################'
+  puts "Starting #{msg} at #{Time.new}."
+  puts '################################################'
+end
+
+def ci_end_msg(msg, check, time)
   puts '################################################'
   puts "Finished in #{format('%.2f', Time.new - time)} seconds."
   print '[PASSED] ' if check
@@ -38,17 +44,37 @@ def ci_msg(msg, check, time)
   check
 end
 
-task :ci_inch do
+desc 'Check documentation coverage'
+task :inch do
   inch_sh = 'bundle exec inch list --all --no-color . 2>&1'
+
+  ci_begin_msg('CI inch')
   out, success, time = ci_run(inch_sh)
 
   check = success && out.scan(/┃  ([ABCU]) /).uniq.flatten.eql?(['A'])
 
-  ci_msg 'CI inch', check, time
+  ci_end_msg 'CI inch', check, time
+end
+
+RuboCop::RakeTask.new # add rake tasks "rubocop" and "rubocop:auto_correct"
+Rake::Task[:rubocop].clear # remove default task "rake rubocop"
+
+desc 'Run RuboCop'
+task :rubocop do
+  rubocop_sh = 'bundle exec rubocop -D 2>&1'
+
+  ci_begin_msg('CI rubocop')
+  out, success, time = ci_run(rubocop_sh)
+
+  check = success && out.split("\n")[-1].match?(/, no offenses detected$/)
+
+  ci_end_msg('CI rubocop', check, time)
 end
 
 task :ci_spec do
   spec_sh = 'bundle exec rake spec 2>&1'
+  ci_begin_msg('CI spec')
+
   out, success, time = ci_run(spec_sh)
   out_lines = out.split("\n")
 
@@ -56,42 +82,29 @@ task :ci_spec do
   check &&= out_lines[-3].match?(/ 0 failures/)
   check &&= out_lines[-1].match?(/LOC \(100\.0%\) covered\.$/)
 
-  ci_msg 'CI spec', check, time
+  ci_end_msg 'CI spec', check, time
 end
-
-task :ci_rubocop do
-  rubocop_sh = 'bundle exec rubocop -D 2>&1'
-  out, success, time = ci_run(rubocop_sh)
-
-  check = success && out.split("\n")[-1].match?(/, no offenses detected$/)
-
-  ci_msg('CI rubocop', check, time)
-end
-
-task :ci_mutant do
-  mutant_sh = 'bundle exec rake mutant 2>&1'
-  out, success, time = ci_run(mutant_sh)
-  check = success && out.split("\n")[-2] == 'Coverage:        100.00%'
-
-  ci_msg('CI mutant', check, time)
-end
-
-RSpec::Core::RakeTask.new(:spec)
-RuboCop::RakeTask.new
-YARD::Rake::YardocTask.new do |config|
-  config.stats_options = ['--list-undoc', '--compact']
-end
-Inch::Rake::Suggest.new
 
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
 task :mutant do
-  puts `bundle exec mutant \
+  mutant_sh = 'bundle exec mutant \
     --include lib \
     --require yaml_normalizer \
-    --use rspec YamlNormalizer*`
+    --use rspec YamlNormalizer*  2>&1'
+
+  ci_begin_msg('mutant')
+  out, success, time = ci_run(mutant_sh)
+  check = success && out.split("\n")[-2] == 'Coverage:        100.00%'
+
+  ci_end_msg('mutant', check, time)
 end
 
-desc 'Continuous integration test suite'
-task ci: %i[ci_inch ci_rubocop ci_spec ci_mutant]
+RSpec::Core::RakeTask.new(:spec)
+YARD::Rake::YardocTask.new do |config|
+  config.stats_options = ['--list-undoc', '--compact']
+end
+
+desc 'Continuous integration test suite (DEFAULT)'
+task ci: %i[inch rubocop ci_spec mutant]
 
 task default: :ci

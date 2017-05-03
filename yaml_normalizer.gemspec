@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
     original file and the resulting file are 100% identical to Psych (stable
     change)."
   spec.homepage      = 'https://github.com/Sage/yaml_normalizer'
-  spec.license       = 'MIT'
+  spec.license       = 'Apache-2.0'
   spec.files         = Dir['lib/**/*.rb']
   spec.bindir        = 'bin'
   spec.executables   = 'yaml_normalizer'

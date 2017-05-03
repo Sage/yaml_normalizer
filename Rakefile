@@ -85,7 +85,8 @@ Inch::Rake::Suggest.new
 
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
 task :mutant do
-  puts `bundle exec mutant --include lib \
+  puts `bundle exec mutant \
+    --include lib \
     --require yaml_normalizer \
     --use rspec YamlNormalizer*`
 end

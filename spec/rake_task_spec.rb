@@ -5,7 +5,7 @@ require 'yaml_normalizer/rake_task'
 Rake::TaskManager.record_task_metadata = true
 
 # rubocop:disable Metrics/BlockLength
-describe YamlNormalizer::RakeTask do
+RSpec.describe YamlNormalizer::RakeTask do
   describe 'defining tasks' do
     context 'yaml:check' do
       it 'creates "yaml:check"' do

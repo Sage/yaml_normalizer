@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe YamlNormalizer::Ext::Namespaced do
+RSpec.describe YamlNormalizer::Ext::Namespaced do
   context 'extended Hash instances with "namespaced"' do
     subject { hash.extend(described_module).namespaced }
     let(:described_module) { described_class }

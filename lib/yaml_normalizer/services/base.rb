@@ -16,6 +16,25 @@ module YamlNormalizer
     #     end
     #   end
     class Base
+      # Creates a service object.
+      # Inherit from Base and implement this method.
+      # @example
+      #   class IsFile < Base
+      #     attr_reader :file
+      #     def initialize(file)
+      #       @file = file.to_s
+      #     end
+      #     def call
+      #       File.file? file
+      #     end
+      #   end
+      #
+      # @param *args [Array<Object>] arguments
+      # @raise [NotImplementedError] if call is not implemented
+      def initialize(*args)
+        @args = args
+      end
+
       # A convenience class method to initialize Normalize with the given
       # arguments and call the method "call" on the instance.
       # @param *args [Array] arguments to be passed to Base.new

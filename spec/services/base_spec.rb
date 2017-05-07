@@ -2,10 +2,19 @@
 
 require 'spec_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe YamlNormalizer::Services::Base do
-  describe '.call' do
-    subject { described_class }
+  subject { described_class }
+  let(:args) { [:foo, 'bar', 842] }
 
+  describe '.new' do
+    it 'accepts arbitrary arguments' do
+      instance = subject.new(*args)
+      expect(instance.instance_variable_get(:@args)).to eql(args)
+    end
+  end
+
+  describe '.call' do
     let(:args) { [:foo, 'bar', 842] }
     let(:instance) { double('SubClassOfBase', call: nil) }
 
@@ -22,6 +31,7 @@ RSpec.describe YamlNormalizer::Services::Base do
   end
 
   describe '#call' do
+    subject { described_class.new }
     it 'raises NotImplementedError' do
       expect { subject.call }.to raise_error(NotImplementedError)
     end

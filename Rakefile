@@ -1,48 +1,14 @@
 # frozen_string_literal: true
 
 require './tmpfix/rake_application'
+require './spec/ci_helper'
 
-require 'English'
 require 'bundler/gem_tasks'
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'yard'
 require 'inch/rake'
-
-# rubocop:disable Metrics/MethodLength
-def ci_run(cmd)
-  time = Time.new
-  output = StringIO.new
-  IO.popen(cmd) do |f|
-    until f.eof?
-      bit = f.getc
-      output << bit
-      $stdout.putc bit
-    end
-  end
-  output.rewind
-  [output.read, $CHILD_STATUS.success?, time]
-ensure
-  output.close
-end
-
-def ci_begin_msg(msg)
-  puts '################################################'
-  puts "Starting #{msg} at #{Time.new}."
-  puts '################################################'
-end
-
-def ci_end_msg(msg, check, time)
-  puts '################################################'
-  puts "Finished in #{format('%.2f', Time.new - time)} seconds."
-  print '[PASSED] ' if check
-  print '[FAILED] ' unless check
-  puts msg
-  puts '################################################'
-  abort unless check
-  check
-end
 
 desc 'Check documentation coverage'
 task :inch do

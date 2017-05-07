@@ -2,6 +2,8 @@
 
 $LOAD_PATH.unshift File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 
+require './spec/ci_helper'
+
 if ENV['TRAVIS']
   require 'coveralls'
   Coveralls.wear!

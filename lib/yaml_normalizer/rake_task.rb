@@ -3,6 +3,7 @@
 lib = File.expand_path(File.join('..', '..', '..', 'lib'), __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yaml_normalizer'
+require 'rake/tasklib'
 
 module YamlNormalizer
   # Provides Rake task integration
@@ -10,8 +11,6 @@ module YamlNormalizer
     # The name of the task
     # @return [String] name of the Rake task
     attr_accessor :name
-    # @return [Array] arguments to be passed to Suggest.run
-    attr_accessor :args
 
     # The YAML files to process.
     # @example Task files assignment
@@ -33,17 +32,25 @@ module YamlNormalizer
     #     end
     #
     #   This gives you the following tasks (run rake -T)
+    #     rake yaml:check  # Check if given YAML are normalized
     #     rake yaml:normalize        # Normalize given YAML files
     # @param name [String] name of the Rake task
     # @param &block [Proc] optional, evaluated inside the task definition
     def initialize(name = 'yaml', &block)
       yield(self) if block
 
+      desc 'Check if configured YAML are normalized'
+      task("#{name}:check") { check }
+
       desc 'Normalize configured YAML files'
       task("#{name}:normalize") { normalize }
     end
 
     private
+
+    # Checks if configured YAML are normalized
+    def check
+      Services::Check.call(*files)
     end
 
     # Normalizes configured YAML files

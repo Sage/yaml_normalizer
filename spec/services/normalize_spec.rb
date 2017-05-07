@@ -9,13 +9,14 @@ RSpec.describe YamlNormalizer::Services::Normalize do
   let(:path) { "#{SpecConfig.data_path}#{File::SEPARATOR}" }
   let(:args) { ["#{path}#{file}"] }
 
-  context 'not a string, not a file' do
+  context 'invalid args, no arg matches file' do
     subject { described_class.new(*args).call }
     let(:args) { ['lol', :foo, nil] }
+    it { expect { -> { subject } }.to_not raise_error }
     it { is_expected.to eql [] }
   end
 
-  context 'not a string, not a file' do
+  context 'partially invalid args' do
     let(:args) { ["#{path}*.1", :invalid, "#{path}1.*"] }
     it 'sanitaizes list of files before processing' do
       expect(subject.files).to eql ["#{path}1.1", "#{path}1.2", "#{path}2.1"]
@@ -50,12 +51,13 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         end
       end
 
-      it 'prints out a success message' do
+      it 'prints out a success message with relative file path' do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
+          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
-            .to output("[NORMALIZED] #{yaml.path}\n").to_stderr
+            .to output("[NORMALIZED] #{f}\n").to_stderr
         end
       end
     end
@@ -67,8 +69,9 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
+          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
-            .to output("[NORMALIZED] #{yaml.path}\n").to_stderr
+            .to output("[NORMALIZED] #{f}\n").to_stderr
         end
       end
     end
@@ -89,8 +92,9 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           allow(normalize).to receive(:parse)
             .with(File.read(path + other)).and_return(defect)
 
+          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
           expect { normalize.call }
-            .to output("[ERROR]      Could not normalize #{yaml.path}\n")
+            .to output("[ERROR]      Could not normalize #{f}\n")
             .to_stderr
         end
       end

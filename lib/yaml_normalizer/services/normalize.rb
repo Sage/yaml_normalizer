@@ -15,7 +15,7 @@ module YamlNormalizer
 
       # Create a Normalize service object by calling .new and passing one or
       # more String that are interpreted as file glob pattern.
-      # @param *args [Array] a list of file glob patterns
+      # @param *args [Array<String>] a list of file glob patterns
       def initialize(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq
@@ -35,6 +35,7 @@ module YamlNormalizer
       private
 
       def normalize!(file)
+        file = Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
         if stable?(input = File.read(file), norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
           $stderr.puts "[NORMALIZED] #{file}"

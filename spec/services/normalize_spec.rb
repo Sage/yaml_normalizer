@@ -42,12 +42,16 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
-          expect { described_class.new(yaml.path).call }
-            .to(
-              change { File.read(yaml.path) }
-              .from(File.read("#{path}#{file}"))
-                  .to(File.read("#{path}#{expected}"))
-            )
+          expect do
+            stderr = $stderr
+            $stderr = StringIO.new
+            described_class.new(yaml.path).call
+            $stderr = stderr
+          end.to(
+            change { File.read(yaml.path) }
+            .from(File.read("#{path}#{file}"))
+            .to(File.read("#{path}#{expected}"))
+          )
         end
       end
 

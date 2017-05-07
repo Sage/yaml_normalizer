@@ -1,0 +1,10 @@
+---
+a:
+- valid
+- yaml
+- file
+having:
+  namespaced: values
+this: is
+---
+that: one, too

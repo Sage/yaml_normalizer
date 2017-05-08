@@ -30,7 +30,23 @@ it runs stand-alone as well.
     $ gem install yaml_normalizer
 
 ## Usage
+### Use binary
+After installing yaml_normalizer, run yaml_normalizer from console like so:
+
     $ yaml_normalizer my_yaml_file.yml
+
+### Include Yaml Normalizer rake tasks
+In you Rakefile, add
+
+    require 'yaml_normalizer/rake_task'
+    YamlNormalizer::RakeTask.new do |config|
+      yamls = Dir[File.join(File.dirname(__FILE__), "**", '*.yml')]
+      config.files = yamls
+    end
+This will give you two additional rake task (`rake -T`)
+  rake yaml:check      # Check if configured YAML are normalized
+  rake yaml:normalize  # Normalize configured YAML files
+
 
 ## Development
 

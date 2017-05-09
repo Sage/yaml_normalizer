@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'parallel_tests'
   spec.add_development_dependency 'mutant-rspec'
   spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'flay'
   spec.add_development_dependency 'flog'
   spec.add_development_dependency 'inch'
   spec.add_development_dependency 'coveralls'

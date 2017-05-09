@@ -13,13 +13,9 @@ require 'inch/rake'
 desc 'Check documentation coverage'
 task :inch do
   inch_sh = 'bundle exec inch list --all --no-color . 2>&1'
-
-  ci_begin_msg('CI inch')
-  out, success, time = ci_run(inch_sh)
-
-  check = success && out.scan(/┃  ([ABCU]) /).uniq.flatten.eql?(['A'])
-
-  ci_end_msg 'CI inch', check, time
+  ci_task('CI inch', inch_sh) do |out, success|
+    success && out.scan(/┃  ([ABCU]) /).uniq.flatten.eql?(['A'])
+  end
 end
 
 RuboCop::RakeTask.new # add rake tasks "rubocop" and "rubocop:auto_correct"
@@ -27,28 +23,17 @@ Rake::Task[:rubocop].clear # remove default task "rake rubocop"
 
 desc 'Run RuboCop'
 task :rubocop do
-  rubocop_sh = 'bundle exec rubocop -D 2>&1'
+  ci_task('CI rubocop', 'bundle exec rubocop -D 2>&1')
 
-  ci_begin_msg('CI rubocop')
-  out, success, time = ci_run(rubocop_sh)
-
-  check = success && out.split("\n")[-1].match?(/, no offenses detected$/)
-
-  ci_end_msg('CI rubocop', check, time)
 end
 
 task :ci_spec do
-  spec_sh = 'bundle exec rake spec 2>&1'
-  ci_begin_msg('CI spec')
-
-  out, success, time = ci_run(spec_sh)
-  out_lines = out.split("\n")
-
-  check = success
-  check &&= out_lines[-3].match?(/ 0 failures/)
-  check &&= out_lines[-1].match?(/LOC \(100\.0%\) covered\.$/)
-
-  ci_end_msg 'CI spec', check, time
+  ci_task('CI spec', 'bundle exec rspec 2>&1') do |out, success|
+    out_lines = out.split("\n")
+    success &&= out_lines[-3].match?(/ 0 failures/)
+    success &&= out_lines[-1].match?(/LOC \(100\.0%\) covered\.$/)
+    success
+  end
 end
 
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
@@ -58,11 +43,9 @@ task :mutant do
     --require yaml_normalizer \
     --use rspec YamlNormalizer*  2>&1'
 
-  ci_begin_msg('mutant')
-  out, success, time = ci_run(mutant_sh)
-  check = success && out.split("\n")[-2] == 'Coverage:        100.00%'
-
-  ci_end_msg('mutant', check, time)
+  ci_task('mutant', mutant_sh) do |out, success|
+    success && out.split("\n")[-2] == 'Coverage:        100.00%'
+  end
 end
 
 RSpec::Core::RakeTask.new(:spec)

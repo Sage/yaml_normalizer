@@ -2,6 +2,21 @@
 
 require 'English'
 
+# Helper method that wraps CI functionality
+# If called with a block, ci_task expects the block to return a Boolean
+# indicating the overall success of the task.
+# @example
+# @param name [String] name of the task
+# @param cmd [String] command to be executed in child process
+def ci_task(name, cmd)
+  ci_begin_msg(name)
+  out, success, time = ci_run(cmd)
+
+  success = yield(out, success) if block_given?
+
+  ci_end_msg(name, success, time)
+end
+
 # Helper method that captures output and returns it as String together with the
 # command's success status and it's start time. run_ci optionally prints the
 # command's output to the original output as well

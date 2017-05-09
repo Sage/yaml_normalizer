@@ -1,4 +1,4 @@
-# YamlNormalizer
+# Yaml Normalizer
 
 YAML is a file format that's human-readable and very common among Ruby projects.
 The [YAML standard](http://yaml.org/) is well-defined and supported by many
@@ -8,20 +8,22 @@ programming languages. Ruby's default YAML parser and emitter is
 Yaml Normalizer follows the notion that there is a normalized YAML file
 format. It re-formats YAML files in a way that the results closely match Psych's
 output. Yaml Normalizer ensures that the original file and the resulting
-file are identical regarding the resulting Hash from Psych (stable change).
+file are identical regarding the resulting Hash from Psych (stable change). The
+primary target of this project are i18n YAML files.
 
 Yaml Normalizer provides
 * **Alphabetic Ordering**
-  * to improve (human-)readability and maintainability
-  * to avoid duplicate keys
-* **Paragraphs** (TODO)
-  * to improve (human-)readability and maintainability
+  * to improve (human-)readability and maintainability,
+  * to avoid duplicate keys,
+  * to minimize effort when resolving merge conflicts in YAML files
 * **Limited Line Length**
   * to improve (human-)readability and maintainability
 * **Non-breaking Changes only**
   * to ensure changes do not impact functional parts of the application.
-    YamlNormalizer considers changing the order of YAML file entries as
-    non-breaking.
+    Yaml Normalizer considers changing the order of YAML file entries as
+    non-breaking,
+  * to build maximum trust in Yaml Normalizer and its generated YAML files,
+  * to avoid the need of manual reviews.
 
 Yaml Normalizer can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.
@@ -31,7 +33,7 @@ it runs stand-alone as well.
 
 ## Usage
 ### Use binary
-After installing yaml_normalizer, run yaml_normalizer from console like so:
+After installing Yaml Normalizer, run `yaml_normalizer` from console like so:
 
     $ yaml_normalizer my_yaml_file.yml
 
@@ -40,7 +42,7 @@ In you Rakefile, add
 
     require 'yaml_normalizer/rake_task'
     YamlNormalizer::RakeTask.new do |config|
-      yamls = Dir[File.join(File.dirname(__FILE__), "**", '*.yml')]
+      yamls = Dir['**/*.yml']
       config.files = yamls
     end
 This will give you two additional rake task (`rake -T`)
@@ -63,11 +65,15 @@ git commits and tags, and push the `.gem` file to
 ##### Install from source locally
     $ bundle exec rake install:local
 
+#### Generate Documentation
+##### Using Yard
+    $ bundle exec rake yard
+
 #### Test Implementation
-##### Run CI task
+##### Run all CI tasks
     $ bundle exec rake
 
-##### Run Guard (with Rspec and Rubocop)
+##### Run Guard
     $ bundle exec guard
 
 ##### Run RSpec
@@ -76,19 +82,13 @@ git commits and tags, and push the `.gem` file to
 ##### Run parallel RSpec
     $ bundle exec parallel_rspec spec/
 
-#### Test Tests
-##### Kill all mutants
+#### Test Tests using mutant
     $ bundle exec rake mutant
 
-#### Test Documentation
-##### Using Yard
-    $ bundle exec rake yard
-
-##### Using Inch
+#### Test Documentation using Inch
     $ bundle exec rake inch
 
-#### Test static code metrics
-##### Run Rubocop and Rubocop's auto_correct
+#### Check and Correct static code metrics using Rubocop
     $ bundle exec rake rubocop
     $ bundle exec rake rubocop:auto_correct
 
@@ -103,7 +103,8 @@ https://github.com/Sage/yaml_normalizer.
 We want to keep engineering standards high and use code reviews and test tools
 to help with that. Yaml Normalizer is designed to have no side effects,
 especially regarding Ruby Core and Standard Lib implementation. Also, we want to
-keep rubocop, inch and mutant happy. We will add more details on PRs if needed.
+keep simplecov, rubocop, flog, inch and mutant happy. We will add more details
+on PRs if needed.
 
 ## License
 

@@ -9,6 +9,7 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'yard'
 require 'inch/rake'
+require 'flog_task'
 
 desc 'Check documentation coverage'
 task :inch do
@@ -24,7 +25,10 @@ Rake::Task[:rubocop].clear # remove default task "rake rubocop"
 desc 'Run RuboCop'
 task :rubocop do
   ci_task('CI rubocop', 'bundle exec rubocop -D 2>&1')
+end
 
+task :ci_flog do
+  ci_task('CI flog', 'bundle exec rake flog 2>&1')
 end
 
 task :ci_spec do
@@ -53,7 +57,12 @@ YARD::Rake::YardocTask.new do |config|
   config.stats_options = ['--list-undoc', '--compact']
 end
 
+FlogTask.new do |config|
+  config.dirs = ['lib']
+  config.verbose = true
+end
+
 desc 'Continuous integration test suite (DEFAULT)'
-task ci: %i[inch rubocop ci_spec mutant]
+task ci: %i[inch rubocop ci_flog ci_spec mutant]
 
 task default: :ci

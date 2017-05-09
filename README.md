@@ -92,11 +92,8 @@ git commits and tags, and push the `.gem` file to
     $ bundle exec rake rubocop
     $ bundle exec rake rubocop:auto_correct
 
-##### Run Flay (duplication)
-    $ bundle exec flay
-
-##### Run Flog (complexity)
-    $ bundle exec flog .
+#### Run Flog (check complexity)
+    $ bundle exec flog -a lib
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at

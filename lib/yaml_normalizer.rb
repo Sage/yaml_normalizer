@@ -7,4 +7,5 @@ end
 
 require 'yaml_normalizer/version'
 require 'yaml_normalizer/ext'
+require 'yaml_normalizer/helpers'
 require 'yaml_normalizer/services'

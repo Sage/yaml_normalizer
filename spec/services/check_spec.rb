@@ -61,7 +61,7 @@ RSpec.describe YamlNormalizer::Services::Check do
     context 'multi-document YAML file' do
       let(:file) { 'valid2_normalized.yml' }
 
-      it 'normalizes the yaml file' do
+      it 'passes if YAML file is already normalized' do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind

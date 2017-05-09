@@ -11,6 +11,8 @@ module YamlNormalizer
     #   check = YamlNormalizer::Services::Call.new('path/to/*.yml')
     #   result = check.call
     class Check < Base
+      include Helpers::Normalize
+
       # files is a sorted array of file path Strings
       attr_reader :files
 
@@ -45,12 +47,6 @@ module YamlNormalizer
         else
           $stdout.puts "[FAILED] normalization suggested for #{file}"
         end
-      end
-
-      def normalize_yaml(yaml)
-        hashes = Psych.parse_stream(yaml).transform
-        hashes.each { |hash| hash.extend(Ext::SortByKey) }
-        hashes.map(&:sort_by_key).map(&:to_yaml).join
       end
     end
   end

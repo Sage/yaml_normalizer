@@ -10,6 +10,8 @@ module YamlNormalizer
     #   normalize = YamlNormalizer::Services::Normalize.new('path/to/*.yml')
     #   result = normalize.call
     class Normalize < Base
+      include Helpers::Normalize
+
       # files is a sorted array of file path Strings
       attr_reader :files
 
@@ -42,12 +44,6 @@ module YamlNormalizer
         else
           $stderr.puts "[ERROR]      Could not normalize #{file}"
         end
-      end
-
-      def normalize_yaml(yaml)
-        hashes = Psych.parse_stream(yaml).transform
-        hashes.each { |hash| hash.extend(Ext::SortByKey) }
-        hashes.map(&:sort_by_key).map(&:to_yaml).join
       end
 
       def stable?(yaml_a, yaml_b)

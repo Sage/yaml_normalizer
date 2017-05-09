@@ -62,6 +62,12 @@ release a new version, update the version number in `version.rb`, and then run
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
+##### Set up yaml_normalizer
+    $ git clone git@github.com:Sage/yaml_normalizer.git
+    $ cd yaml_normalizer/
+    $ gem install bundler
+    $ bundle install
+
 ##### Install from source locally
     $ bundle exec rake install:local
 

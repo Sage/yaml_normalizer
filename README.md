@@ -113,6 +113,7 @@ keep simplecov, rubocop, flog, inch and mutant happy. We will add more details
 on PRs if needed.
 
 ## License
+Yaml Normalizer is available as open source under the terms of the
+[Apache-2.0 licence](https://github.com/Sage/yaml_normalizer/blob/master/LICENSE).
 
-The gem is available as open source under the terms of the
-[MIT License](http://opensource.org/licenses/MIT).
+Copyright (c) 2017 Sage Group Plc. All rights reserved.

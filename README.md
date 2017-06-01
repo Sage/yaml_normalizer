@@ -33,7 +33,7 @@ it runs stand-alone as well.
 
 ## Usage
 ### Use binary
-After installing Yaml Normalizer, run `yaml_normalizer` from console like so:
+After installing Yaml Normalizer, run `yaml_normalizer` from console:
 
     $ yaml_normalizer my_yaml_file.yml
 
@@ -45,9 +45,11 @@ In you Rakefile, add
       yamls = Dir['**/*.yml']
       config.files = yamls
     end
+
 This will give you two additional rake task (`rake -T`)
-  rake yaml:check      # Check if configured YAML are normalized
-  rake yaml:normalize  # Normalize configured YAML files
+
+    rake yaml:check      # Check if configured YAML are normalized
+    rake yaml:normalize  # Normalize configured YAML files
 
 
 ## Development

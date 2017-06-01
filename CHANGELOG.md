@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Removed
+
+
+## [0.2.1] - 2017-06-01
+### Added
 - CHANGELOG.md
 
 ### Changed

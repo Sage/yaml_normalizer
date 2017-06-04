@@ -43,13 +43,13 @@ RSpec.describe YamlNormalizer::RakeTask do
   end
 
   context 'running rake tasks' do
-    before do
+    around do |example|
       $stdout = StringIO.new
       $stderr = StringIO.new
       Rake::Task[task].clear if Rake::Task.task_defined?('yaml:check')
-    end
 
-    after do
+      example.run
+
       $stdout = STDOUT
       $stderr = STDERR
     end
@@ -57,28 +57,34 @@ RSpec.describe YamlNormalizer::RakeTask do
     describe 'running rake task "yaml:check"' do
       let(:task) { 'yaml:check' }
 
-      it 'runs with default options' do
+      it 'runs with default file configuration' do
         described_class.new
 
-        expect(YamlNormalizer::Services::Check).to receive(:call).with(no_args)
-
+        expect(YamlNormalizer::Services::Check).to receive(:call)
+          .with(no_args)
+          .and_return(true)
         Rake::Task['yaml:check'].execute
       end
 
-      it 'runs with configured files' do
+      it 'runs with files = "*.yml"' do
         described_class.new { |task| task.files = '*.yml' }
 
-        expect(YamlNormalizer::Services::Check).to receive(:call).with('*.yml')
-
+        expect(YamlNormalizer::Services::Check).to receive(:call)
+          .with('*.yml')
+          .and_return(true)
         Rake::Task['yaml:check'].execute
       end
 
-      it 'runs with configured files' do
-        described_class.new { |task| task.files = '*.yml' }
+      it 'raises an error if yaml:check fails' do
+        described_class.new
+        msg = <<~MSG
+          yaml:check failed.
+          Run 'rake yaml:normalize' to normalize YAML files.
+        MSG
 
-        expect(YamlNormalizer::Services::Check).to receive(:call).with('*.yml')
+        allow(YamlNormalizer::Services::Check).to receive(:call).with(no_args)
 
-        Rake::Task['yaml:check'].execute
+        expect { Rake::Task['yaml:check'].execute }.to raise_error(msg)
       end
     end
 

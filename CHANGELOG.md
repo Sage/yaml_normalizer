@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Add hint to run normalize task when check task fails
 
 ### Changed
 - Fix check rake task's exit value

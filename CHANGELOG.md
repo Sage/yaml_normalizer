@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+- Fix check rake task's exit value
+- Fix return when checking YAMLs
+- Fix section "rake -t" in README.md
 
 ### Removed
 

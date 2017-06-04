@@ -40,13 +40,19 @@ module YamlNormalizer
       yield(self) if block
 
       desc 'Check if configured YAML are normalized'
-      task("#{name}:check") { check }
+      task("#{name}:check") { abort(check_failed(name)) unless check }
 
       desc 'Normalize configured YAML files'
       task("#{name}:normalize") { normalize }
     end
 
     private
+
+    # Error message to be printed if check fails
+    def check_failed(name)
+      "#{name}:check failed.\n" \
+        "Run 'rake #{name}:normalize' to normalize YAML files.\n"
+    end
 
     # Checks if configured YAML are normalized
     def check

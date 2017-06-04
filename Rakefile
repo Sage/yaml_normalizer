@@ -48,7 +48,7 @@ task :mutant do
     --use rspec YamlNormalizer*  2>&1'
 
   ci_task('mutant', mutant_sh) do |out, success|
-    success && out.split("\n")[-2] == 'Coverage:        100.00%'
+    success && out.split("\n").any? { |l| l == 'Coverage:        100.00%' }
   end
 end
 

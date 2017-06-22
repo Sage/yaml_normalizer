@@ -46,7 +46,7 @@ RSpec.describe YamlNormalizer::RakeTask do
     around do |example|
       $stdout = StringIO.new
       $stderr = StringIO.new
-      Rake::Task[task].clear if Rake::Task.task_defined?('yaml:check')
+      Rake::Task[task].clear if Rake::Task.task_defined?(task)
 
       example.run
 

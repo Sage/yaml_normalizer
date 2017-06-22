@@ -7,7 +7,7 @@ require './spec/ci_helper'
 if ENV['TRAVIS']
   require 'coveralls'
   Coveralls.wear!
-else
+elsif !defined?(Mutant)
   require 'simplecov'
   SimpleCov.start do
     add_filter '/spec'

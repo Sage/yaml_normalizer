@@ -6,14 +6,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+-
+
+### Changed
+-
+
+### Removed
+-
+
+## [0.2.2] - 2017-06-23
+### Added
 - Add hint to run normalize task when check task fails
 
 ### Changed
 - Fix check rake task's exit value
 - Fix return when checking YAMLs
 - Fix section "rake -t" in README.md
+- Fix mutant output parsing
 
 ### Removed
+- Stop requiring simplecov when running mutation tests
 
 
 ## [0.2.1] - 2017-06-01

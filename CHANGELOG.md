@@ -12,8 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix check rake task's exit value
 - Fix return when checking YAMLs
 - Fix section "rake -t" in README.md
+- Fix mutant output parsing
 
 ### Removed
+- Stop requiring simplecov when running mutation tests
 
 
 ## [0.2.1] - 2017-06-01

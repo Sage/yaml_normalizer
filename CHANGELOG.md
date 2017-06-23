@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+-
+
+### Changed
+-
+
+### Removed
+-
+
+## [0.2.2] - 2017-06-23
+### Added
 - Add hint to run normalize task when check task fails
 
 ### Changed

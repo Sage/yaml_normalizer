@@ -15,7 +15,7 @@ RSpec.describe YamlNormalizer::RakeTask do
 
       it 'describes "yaml:check"' do
         expect(Rake::Task['yaml:check'].comment)
-          .to eql('Check if configured YAML are normalized')
+          .to eql('Check if configured YAML files are normalized')
       end
 
       it 'lists "yaml:normalize"' do

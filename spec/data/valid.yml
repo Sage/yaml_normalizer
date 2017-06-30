@@ -1,8 +1,9 @@
----
 this: is
+# Keep ordered!
 a:
-- valid
-- yaml
-- file
+  - valid
+  - yaml
+  - file
+
 having:
   namespaced: values

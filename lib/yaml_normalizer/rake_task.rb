@@ -39,7 +39,7 @@ module YamlNormalizer
     def initialize(name = 'yaml', &block)
       yield(self) if block
 
-      desc 'Check if configured YAML are normalized'
+      desc 'Check if configured YAML files are normalized'
       task("#{name}:check") { abort(check_failed(name)) unless check }
 
       desc 'Normalize configured YAML files'

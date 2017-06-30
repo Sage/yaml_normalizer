@@ -38,17 +38,22 @@ After installing Yaml Normalizer, run `yaml_normalizer` from console:
     $ yaml_normalizer my_yaml_file.yml
 
 ### Include Yaml Normalizer rake tasks
-In you Rakefile, add
+In your Gemfile, add
+
+      gem 'yaml_normalizer', git: 'git@github.com:Sage/yaml_normalizer.git', tag: 'v0.2.2', require: false
+In a Rails context, you might want to only add it to `:development` and `:test` groups.
+
+In your Rakefile, add
 
     require 'yaml_normalizer/rake_task'
     YamlNormalizer::RakeTask.new do |config|
-      yamls = Dir['**/*.yml']
+      yamls = Dir['**/*.yml']  # TODO: Select relevant YAML files in your project.
       config.files = yamls
     end
 
 This will give you two additional rake task (`rake -T`)
 
-    rake yaml:check      # Check if configured YAML are normalized
+    rake yaml:check      # Check if configured YAML files are normalized
     rake yaml:normalize  # Normalize configured YAML files
 
 

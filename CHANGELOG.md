@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
--
+- Add YamlNormalizer::Ext::Nested to generate nested hash from namespaces key-value pairs
 
 ### Changed
 -

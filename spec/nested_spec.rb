@@ -28,6 +28,10 @@ RSpec.describe YamlNormalizer::Ext::Nested do
                              '3' => String,
                              'sym' => 'ok')
     end
+
+    it 'resets the default_proc' do
+      expect(subject[:unknown]).to be_nil
+    end
   end
 
   it 'does not modify Ruby Core class Hash' do

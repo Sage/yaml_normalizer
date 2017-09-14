@@ -16,6 +16,7 @@ module YamlNormalizer
       def nested
         tree = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
         each { |key, val| nest_key(tree, key.to_s, val) }
+        tree.default_proc = nil
         tree
       end
 

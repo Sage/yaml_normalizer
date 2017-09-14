@@ -6,16 +6,17 @@ module YamlNormalizer
     # The approach of extending Hash instances avoids monkey-patching a Ruby
     # Core class and using refinements.
     module Namespaced
-      # Transforms a tree-shaped hash into a plain key-value pair Hash,
+      # Transforms a tree-shaped Hash into a flat key-value pair Hash,
       # separating tree levels with a dot. namespaced does not modify the Hash
       # it's called on.
       # @example
       #   {a: {b: {c: 1}}, b:{x: 2, y: {ok: true}, z: 4}}.namespaced
       #   => {"a.b.c"=>1, "b.x"=>2, "b.y.ok"=>true, "b.z"=>4}
       # @param namespace [Array] the namespace cache for the current namespace,
-      #   used on recursive tree traversal
-      # @param tree [Hash] the accumulator object beeing build while recursive
-      #   traversing the original tree-like Hash
+      #   used on recursive tree traversal1
+      # @param tree [Hash] the accumulator object being build while recursive
+      #   traversing the original tree-shaped Hash
+      # @return [Hash] flat key-value pair Hash
       def namespaced(namespace = [], tree = {})
         each do |key, value|
           child_ns = namespace.dup << key

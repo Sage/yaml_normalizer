@@ -8,4 +8,5 @@ module YamlNormalizer
 end
 
 require 'yaml_normalizer/ext/namespaced'
+require 'yaml_normalizer/ext/nested'
 require 'yaml_normalizer/ext/sort_by_key'

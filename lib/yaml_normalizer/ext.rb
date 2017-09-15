@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 module YamlNormalizer
-  # Ext holds extensions to external dependencies
-  # YamlNormalizer does not extend Ruby Core classes to avoid side effects
+  # *YamlNormalizer::Ext* contains multiple extensions to extend instances of
+  # *Hash* in several ways.
+  # *YamlNormalizer* goes without extending Ruby Core classes or refinements
+  # to provide no functionality without side effects and avoid unexpected
+  # behaviour when working with POROs, fmi see https://git.io/v5Q2E.
   module Ext
   end
 end

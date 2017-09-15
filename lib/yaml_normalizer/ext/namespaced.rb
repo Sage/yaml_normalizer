@@ -2,15 +2,18 @@
 
 module YamlNormalizer
   module Ext
-    # Extends an instance of Hash to add the method namespaced.
+    # *YamlNormalizer::Ext::Namespaced* extends instances of *Hash* to provide
+    # the additional public helper method *namespaced*.
     # The approach of extending Hash instances avoids monkey-patching a Ruby
     # Core class and using refinements.
     module Namespaced
-      # Transforms a tree-shaped Hash into a flat key-value pair Hash,
-      # separating tree levels with a dot. namespaced does not modify the Hash
-      # it's called on.
+      # Transforms a tree-shaped *Hash* into a flat key-value pair *Hash*,
+      # separating tree levels with a dot.
+      # *namespaced* does not modify the  instance of *Hash* it's called on.
       # @example
-      #   {a: {b: {c: 1}}, b:{x: 2, y: {ok: true}, z: 4}}.namespaced
+      #   hash = {a: {b: {c: 1}}, b:{x: 2, y: {ok: true}, z: 4}}
+      #   hash.extend(YamlNormalizer::Ext::Namespaced)
+      #   hash.namespaced
       #   => {"a.b.c"=>1, "b.x"=>2, "b.y.ok"=>true, "b.z"=>4}
       # @param namespace [Array] the namespace cache for the current namespace,
       #   used on recursive tree traversal1

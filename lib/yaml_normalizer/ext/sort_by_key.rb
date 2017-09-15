@@ -2,12 +2,13 @@
 
 module YamlNormalizer
   module Ext
-    # Extends an instance of Hash to add the method sort_by_key.
+    # *YamlNormalizer::Ext::SortByKey* extends an instance of *Hash* to provide
+    # the additional public helper methods *sort_by_key*.
     # The approach of extending Hash instances avoids monkey-patching a Ruby
     # Core class and using refinements.
     module SortByKey
-      # Sorts entries alphabetically by key and returns a new Hash
-      # sort_by_key does not modify the Hash it's called on.
+      # Sorts entries alphabetically by key and returns a new *Hash*.
+      # *sort_by_key* does not modify the instance of *Hash* it's called on.
       # @example
       #   hash = { { b: { z: 20, x: 10, y: { b: 1, a: 2 } }, a: nil } }
       #   hash.extend(YamlNormalizer::Ext::SortByKey)

@@ -28,7 +28,7 @@ module YamlNormalizer
       def nest_key(hash, key, val)
         if key.include?('.')
           keys = key.split('.')
-          hash.dig(*(keys[0..-2]))[keys.fetch(-1)] = val
+          hash.dig(*keys[0..-2])[keys.fetch(-1)] = val
         else
           hash[key] = val
         end

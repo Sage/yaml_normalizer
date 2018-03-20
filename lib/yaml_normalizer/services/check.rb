@@ -33,7 +33,9 @@ module YamlNormalizer
             normalized << normalized?(file)
           else
             normalized << nil
+            # rubocop:disable Style/StderrPuts
             $stderr.puts "#{file} not a YAML file"
+            # rubocop:enable Style/StderrPuts
           end
         end
 

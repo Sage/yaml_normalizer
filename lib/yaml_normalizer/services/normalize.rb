@@ -29,7 +29,9 @@ module YamlNormalizer
           if IsYaml.call(file)
             normalize!(file)
           else
+            # rubocop:disable Style/StderrPuts
             $stderr.puts "#{file} not a YAML file"
+            # rubocop:enable Style/StderrPuts
           end
         end
       end
@@ -38,6 +40,7 @@ module YamlNormalizer
 
       def normalize!(file)
         file = Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
+        # rubocop:disable Style/StderrPuts
         if stable?(input = File.read(file, mode: 'r:bom|utf-8'),
                    norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
@@ -45,6 +48,7 @@ module YamlNormalizer
         else
           $stderr.puts "[ERROR]      Could not normalize #{file}"
         end
+        # rubocop:enable Style/StderrPuts
       end
 
       def stable?(yaml_a, yaml_b)

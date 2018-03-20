@@ -1,5 +1,8 @@
 # Yaml Normalizer
 
+[![Build Status](https://travis-ci.org/Sage/yaml_normalizer.svg?branch=master)](https://travis-ci.org/Sage/yaml_normalizer)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8dccb6c06fcd8bc0e587/maintainability)](https://codeclimate.com/github/Sage/yaml_normalizer/maintainability)
+
 YAML is a file format that's human-readable and very common among Ruby projects.
 The [YAML standard](http://yaml.org/) is well-defined and supported by many
 programming languages. Ruby's default YAML parser and emitter is

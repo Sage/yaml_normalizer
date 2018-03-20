@@ -1,5 +1,12 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.3.0
-before_install: gem install bundler -v 1.13.6
+- 2.4.0
+deploy:
+  provider: rubygems
+  api_key:
+    secure: NM+7A5nCXjPrgyVim9coaC9ibzH+a4TAzMAs/JCaJmK9N9CkY5pq3TG4NOhbdSHa4Roku0YLo+sORTRZ7uT+8u5ey9A4cQTb2CNwPMhI68hN4JZiUJG42+1qK9dOxMe0piK5/K13papVLxJu+wSdHKfXgnXnkkQWVp0sZ9QfDd57SDVZY7x6r/4V8fT60hDn64Y7HMZNOKp84zj9DxnfLQZ4P/ap5F7e0vztXE7Dpt7f97RdS1ksFVR3C6uW2It1M9EkmxBAMmValMKv+8UjoVf3F25WxCkXWmbGzVZT2SYau3Mx0IDutX/9XketOS3Ca6zxl20fVcnmAvkCNT1K1zMnTK9Gku5Zr8yp0sFUQSUoZtW9c8dFkqZV5YgMKaPVwsx5KjtjvGsQmhIfwpYa8RPToWeZ4uWWYFowkPrkqQX3HGs+SgYFpQc++rYf1tITY5OIjuPPHl9sFb8ROudUP0pwZyg+sFEt0Hxdg+YNF1eSoow7rBc8KvuF6NwpIhCaQWtZHRp1G85MFwcmEDPi93x+Hfz08OLir5gvFJs4h4bJsQ0O26lWkXA0CWxxbG1CixEEI31nyVzMQokjJl3cvcZ4HaGRAu55AHHWkOiadUYXdlrKjMJ0icUVPZDngctRdBdyBnlesqx7G0xI7dq8SADnsK/UxKSGj/HF9oStxPM=
+  gem: yaml_normalizer
+  on:
+    tags: true
+    repo: Sage/yaml_normalizer

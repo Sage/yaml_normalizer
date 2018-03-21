@@ -4,10 +4,7 @@ $LOAD_PATH.unshift File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 
 require './spec/ci_helper'
 
-if ENV['TRAVIS']
-  require 'coveralls'
-  Coveralls.wear!
-elsif !defined?(Mutant)
+unless defined?(Mutant)
   require 'simplecov'
   SimpleCov.start do
     add_filter '/spec'

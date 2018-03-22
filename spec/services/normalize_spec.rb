@@ -25,9 +25,9 @@ RSpec.describe YamlNormalizer::Services::Normalize do
 
   describe '#call' do
     subject { described_class.new(*args).call }
+
     context 'invalid YAML file' do
       let(:file) { 'invalid.yml' }
-
       it 'prints "not a YAML file" message to STDERR' do
         expect { subject }
           .to output("#{path}invalid.yml not a YAML file\n").to_stderr
@@ -103,9 +103,9 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           yaml.rewind
           normalize = described_class.new(yaml.path)
 
-          allow(normalize).to receive(:parse)
+          allow(normalize).to receive(:convert)
             .with(File.read(path + file)).and_call_original
-          allow(normalize).to receive(:parse)
+          allow(normalize).to receive(:convert)
             .with(File.read(path + other)).and_return(defect)
 
           f_abs = Pathname.new(yaml.path).realpath

@@ -10,6 +10,8 @@ module YamlNormalizer
     #   is_yaml = YamlNormalizer::Services::IsYaml.new('path/to/file.yml')
     #   result = is_yaml.call
     class IsYaml < Base
+      include Helpers::Normalize
+
       # file is the file path String to be regarded
       attr_reader :file
 
@@ -31,10 +33,10 @@ module YamlNormalizer
         File.file? file
       end
 
-      # The current implementation does not require parsable? to return a
+      # The current implementation does not require parseable? to return a
       # boolean value
       def parseable?
-        Psych.load_file(file)
+        parse(read(file))
       rescue Psych::SyntaxError
         false
       end

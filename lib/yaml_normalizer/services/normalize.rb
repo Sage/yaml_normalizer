@@ -39,8 +39,7 @@ module YamlNormalizer
       def normalize!(file)
         file_abs = Pathname.new(file).realpath
         file = file_abs.relative_path_from(Pathname.new(Dir.pwd))
-        if stable?(input = File.read(file, mode: 'r:bom|utf-8'),
-                   norm = normalize_yaml(input))
+        if stable?(input = read(file), norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
           warn "[NORMALIZED] #{file}"
         else
@@ -49,12 +48,12 @@ module YamlNormalizer
       end
 
       def stable?(yaml_a, yaml_b)
-        parse(yaml_a).each_with_index.all? do |a, i|
-          a.namespaced.eql?(parse(yaml_b).fetch(i).namespaced)
+        convert(yaml_a).each_with_index.all? do |a, i|
+          a.namespaced.eql?(convert(yaml_b).fetch(i).namespaced)
         end
       end
 
-      def parse(yaml)
+      def convert(yaml)
         ary = Psych.parse_stream(yaml).transform
         ary.each { |hash| hash.extend(Ext::Namespaced) }
         ary

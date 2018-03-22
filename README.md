@@ -33,10 +33,7 @@ Yaml Normalizer can be used in frameworks like Rails, Sinatra or Cuba, but
 it runs stand-alone as well.
 
 ## Installation
-    $ git clone git@github.com:Sage/yaml_normalizer.git
-    $ cd yaml_normalizer
-    $ gem build yaml_normalizer.gemspec
-    $ gem install yaml_normalizer*.gem
+    $ gem install yaml_normalizer
 
 ## Usage
 ### Use binary

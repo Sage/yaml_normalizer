@@ -17,7 +17,7 @@ module YamlNormalizer
       # @param recursive [Boolean] defines if sort_by_key is called on child
       #   nodes, defaults to true
       def sort_by_key(recursive = true)
-        keys.sort.each_with_object({}) do |key, seed|
+        keys.sort_by(&:to_s).each_with_object({}) do |key, seed|
           value = seed[key] = fetch(key)
           if recursive && value.instance_of?(Hash)
             seed[key] = value.extend(SortByKey).sort_by_key

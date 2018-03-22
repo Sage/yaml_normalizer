@@ -87,3 +87,4 @@ RSpec.describe YamlNormalizer::Services::Check do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

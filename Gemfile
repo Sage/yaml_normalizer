@@ -2,7 +2,8 @@
 
 source 'https://rubygems.org'
 
-ruby '2.4'
+ruby '~> 2.4'
 
-# Specify your gem's dependencies in yaml_normalizer.gemspec
+gem 'simplecov', require: false, group: :test
+
 gemspec

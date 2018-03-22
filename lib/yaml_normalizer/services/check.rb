@@ -33,7 +33,7 @@ module YamlNormalizer
             normalized << normalized?(file)
           else
             normalized << nil
-            $stderr.puts "#{file} not a YAML file"
+            warn "#{file} not a YAML file"
           end
         end
 

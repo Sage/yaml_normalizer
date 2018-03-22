@@ -29,7 +29,7 @@ module YamlNormalizer
           if IsYaml.call(file)
             normalize!(file)
           else
-            $stderr.puts "#{file} not a YAML file"
+            warn "#{file} not a YAML file"
           end
         end
       end
@@ -41,9 +41,9 @@ module YamlNormalizer
         if stable?(input = File.read(file, mode: 'r:bom|utf-8'),
                    norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
-          $stderr.puts "[NORMALIZED] #{file}"
+          warn "[NORMALIZED] #{file}"
         else
-          $stderr.puts "[ERROR]      Could not normalize #{file}"
+          warn "[ERROR]      Could not normalize #{file}"
         end
       end
 

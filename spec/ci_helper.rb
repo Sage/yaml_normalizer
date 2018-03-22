@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'English'
+require 'tempfile'
 
 # Helper method that wraps CI functionality
 # If called with a block, ci_task expects the block to return a Boolean
@@ -38,6 +39,7 @@ def ci_run(cmd, tee = true)
 ensure
   output.close
 end
+# rubocop:enable Metrics/MethodLength
 
 # Helper method used to print out a message before running a CI task
 # @param msg [String] the message to be printed

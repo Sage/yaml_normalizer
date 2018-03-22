@@ -105,3 +105,4 @@ RSpec.describe YamlNormalizer::Services::Normalize do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

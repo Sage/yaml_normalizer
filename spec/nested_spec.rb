@@ -38,3 +38,4 @@ RSpec.describe YamlNormalizer::Ext::Nested do
     expect { {}.nested }.to raise_error(NoMethodError)
   end
 end
+# rubocop:enable Metrics/BlockLength

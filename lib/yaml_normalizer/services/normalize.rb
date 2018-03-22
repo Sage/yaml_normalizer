@@ -37,7 +37,8 @@ module YamlNormalizer
       private
 
       def normalize!(file)
-        file = Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
+        file_abs = Pathname.new(file).realpath
+        file = file_abs.relative_path_from(Pathname.new(Dir.pwd))
         if stable?(input = File.read(file, mode: 'r:bom|utf-8'),
                    norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }

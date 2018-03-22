@@ -34,6 +34,16 @@ RSpec.describe YamlNormalizer::Services::Normalize do
       end
     end
 
+    context 'using relative path' do
+      it 'processes files with a relative path' do
+        Tempfile.open('foo') do |yaml|
+          Dir.chdir(Pathname(yaml).dirname)
+          expect { described_class.new(Pathname(yaml).basename).call }
+            .to_not raise_error
+        end
+      end
+    end
+
     context 'single-document YAML file' do
       let(:file) { 'valid.yml' }
       let(:expected) { 'valid_normalized.yml' }
@@ -59,7 +69,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
             .to output("[NORMALIZED] #{f}\n").to_stderr
         end
@@ -73,7 +84,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
             .to output("[NORMALIZED] #{f}\n").to_stderr
         end
@@ -96,7 +108,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           allow(normalize).to receive(:parse)
             .with(File.read(path + other)).and_return(defect)
 
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { normalize.call }
             .to output("[ERROR]      Could not normalize #{f}\n")
             .to_stderr

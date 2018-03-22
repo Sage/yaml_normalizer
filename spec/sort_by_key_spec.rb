@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe YamlNormalizer::Ext::SortByKey do
   context 'extended Hash instances with "sort_by_key"' do
     subject { hash.extend(described_module).sort_by_key(recursive) }
@@ -12,6 +13,14 @@ RSpec.describe YamlNormalizer::Ext::SortByKey do
 
     it 'does not modify the original object' do
       expect { subject }.to_not(change { hash })
+    end
+
+    context 'keys of different types' do
+      let(:hash) { { 1 => nil, 'two': :ok, false => {} } }
+      let(:expected) { { 1 => nil, false => {}, 'two': :ok } }
+      it 'sorts objects by their String representation' do
+        expect(subject.inspect).to eql(expected.inspect)
+      end
     end
 
     context 'first level only' do
@@ -33,3 +42,4 @@ RSpec.describe YamlNormalizer::Ext::SortByKey do
     expect { {}.sort_by_key }.to raise_error(NoMethodError)
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -127,4 +127,4 @@ on PRs if needed.
 Yaml Normalizer is available as open source under the terms of the
 [Apache-2.0 licence](https://github.com/Sage/yaml_normalizer/blob/master/LICENSE).
 
-Copyright (c) 2017 Sage Group Plc. All rights reserved.
+Copyright (c) 2017-2018 Sage Group Plc. All rights reserved.

@@ -25,12 +25,22 @@ RSpec.describe YamlNormalizer::Services::Normalize do
 
   describe '#call' do
     subject { described_class.new(*args).call }
+
     context 'invalid YAML file' do
       let(:file) { 'invalid.yml' }
-
       it 'prints "not a YAML file" message to STDERR' do
         expect { subject }
           .to output("#{path}invalid.yml not a YAML file\n").to_stderr
+      end
+    end
+
+    context 'using relative path' do
+      it 'processes files with a relative path' do
+        Tempfile.open('foo') do |yaml|
+          Dir.chdir(Pathname(yaml).dirname)
+          expect { described_class.new(Pathname(yaml).basename).call }
+            .to_not raise_error
+        end
       end
     end
 
@@ -59,7 +69,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
             .to output("[NORMALIZED] #{f}\n").to_stderr
         end
@@ -73,7 +84,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         Tempfile.open(file) do |yaml|
           yaml.write(File.read(path + file))
           yaml.rewind
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { described_class.new(yaml.path).call }
             .to output("[NORMALIZED] #{f}\n").to_stderr
         end
@@ -91,12 +103,13 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           yaml.rewind
           normalize = described_class.new(yaml.path)
 
-          allow(normalize).to receive(:parse)
+          allow(normalize).to receive(:convert)
             .with(File.read(path + file)).and_call_original
-          allow(normalize).to receive(:parse)
+          allow(normalize).to receive(:convert)
             .with(File.read(path + other)).and_return(defect)
 
-          f = Pathname.new(yaml.path).relative_path_from(Pathname.new(Dir.pwd))
+          f_abs = Pathname.new(yaml.path).realpath
+          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { normalize.call }
             .to output("[ERROR]      Could not normalize #{f}\n")
             .to_stderr

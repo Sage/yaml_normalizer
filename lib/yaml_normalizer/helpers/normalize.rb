@@ -20,9 +20,19 @@ module YamlNormalizer
       # @param [String] valid YAML string
       # @return [String] normalized YAML string
       def normalize_yaml(yaml)
-        hashes = Psych.parse_stream(yaml).transform
+        hashes = parse(yaml).transform
         hashes.each { |hash| hash.extend(Ext::SortByKey) }
         hashes.map(&:sort_by_key).map(&:to_yaml).join
+      end
+
+      private
+
+      def parse(yaml)
+        Psych.parse_stream(yaml)
+      end
+
+      def read(file)
+        File.read(file, mode: 'r:bom|utf-8')
       end
     end
   end

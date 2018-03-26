@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
--
+- Add .ruby-version file to improve development experience
 
 ### Changed
 -
@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Change flog method to :average, set threshold to 7.7
 - Reset default_proc before returning to app code
 - Open-source Yaml Normalizer at https://github.com/Sage/yaml_normalizer
+- Changed travis setup to publish yaml_normalizer https://travis-ci.org/Sage/yaml_normalizer
 - Publish Yaml Normalizer on https://rubygems.org/gems/yaml_normalizer
 - Specify Ruby version "~> 2.4" in Gemfile
 - Use warn instead of $stderr.puts

@@ -6,11 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+-
+
+### Changed
+-
+
+### Removed
+-
+
+
+## [0.3.0] - 2018-03-26
+### Added
 - Add YamlNormalizer::Ext::Nested to generate nested hash from namespaces key-value pairs
 - Add Codeclimate integration https://codeclimate.com/github/Sage/yaml_normalizer/
 
 ### Changed
-- Change flog method to :average, set threshhold to 7.7
+- Change flog method to :average, set threshold to 7.7
 - Reset default_proc before returning to app code
 - Open-source Yaml Normalizer at https://github.com/Sage/yaml_normalizer
 - Publish Yaml Normalizer on https://rubygems.org/gems/yaml_normalizer

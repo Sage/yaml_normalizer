@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Add .ruby-version file to improve development experience
+- Add gem version badge to README
 
 ### Changed
 -

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add .ruby-version file to improve development experience
 - Add gem version badge to README
 - Add pry-doc
+- Add helper method to retrieve relative path for a file
 
 ### Changed
 -

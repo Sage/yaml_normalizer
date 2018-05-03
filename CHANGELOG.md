@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 -
 
 ### Removed
+- Remove console and setup executables
 - Remove bundler/gem_tasks from Yaml Normalizer
 
 

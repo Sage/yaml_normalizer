@@ -37,9 +37,11 @@ it runs stand-alone as well.
     $ gem install yaml_normalizer
 
 ## Usage
-### Use binary
-After installing Yaml Normalizer, run `yaml_normalizer` from console:
+### Use executable files
+Yaml Normalizer provides you with two executables: `yaml_normalizer` and `yamlcheck`.
+This is how you run them in your terminal:
 
+    $ yaml_check my_yaml_file.yml
     $ yaml_normalizer my_yaml_file.yml
 
 ### Include Yaml Normalizer rake tasks

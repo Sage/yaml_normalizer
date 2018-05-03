@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add gem version badge to README
 - Add pry-doc
 - Add helper method to retrieve relative path for a file
+- Add executable "yaml_check" to check normalization of YAML files
 
 ### Changed
 -

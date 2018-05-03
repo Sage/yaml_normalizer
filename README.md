@@ -97,9 +97,6 @@ git commits and tags, and push the `.gem` file to
 ##### Run RSpec
     $ bundle exec rake spec
 
-##### Run parallel RSpec
-    $ bundle exec parallel_rspec spec/
-
 #### Test Tests using mutant
     $ bundle exec rake mutant
 

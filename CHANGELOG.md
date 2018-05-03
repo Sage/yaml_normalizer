@@ -14,8 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 -
 
 ### Removed
+- Remove parallel_tests
 - Remove console and setup executables
-- Remove bundler/gem_tasks from Yaml Normalizer
+- Remove bundler/gem_tasks
 
 
 ## [0.3.0] - 2018-03-26

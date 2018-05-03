@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add executable "yaml_check" to check normalization of YAML files
 
 ### Changed
+- Clean up README
 - Rename executable to normalize YAML files to "yaml_normalize"
 - Lower average complexity threshold to 6.5
 

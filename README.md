@@ -38,7 +38,7 @@ it runs stand-alone as well.
 
 ## Usage
 ### Use executable files
-Yaml Normalizer provides you with two executables: `yaml_normalize` and `yamlcheck`.
+Yaml Normalizer provides you with two executables: `yaml_normalize` and `yaml_check`.
 This is how you run them in your terminal:
 
     $ yaml_check my_yaml_file.yml
@@ -66,44 +66,43 @@ This will give you two additional rake task (`rake -T`)
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run
-`rake spec` to run the tests. You can also run `bin/console` for an interactive
-prompt that will allow you to experiment.
+In order to start developing with Yaml Normalizer you need to install the following dependencies:
+* [git](https://git-scm.com/downloads) (version control)
+* [Ruby](https://www.ruby-lang.org/en/documentation/installation/) (programming language)
+* [RubyGems](https://rubygems.org/pages/download) (package manager for Ruby)
+* [Bundler](http://bundler.io/) (dependency manager for RubyGems)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To
-release a new version, update the version number in `version.rb`, and then run
-`bundle exec rake release`, which will create a git tag for the version, push
-git commits and tags, and push the `.gem` file to
-[rubygems.org](https://rubygems.org).
-
-##### Set up yaml_normalizer
+##### Set up Yaml Normalizer
     $ git clone git@github.com:Sage/yaml_normalizer.git
     $ cd yaml_normalizer/
-    $ gem install bundler
     $ bundle install
-
-##### Install from source locally
-    $ bundle exec rake install:local
+    $ rake
 
 #### Generate Documentation
 ##### Using Yard
     $ bundle exec rake yard
+After generating yard documentation, open index.html at doc/ in your browser.
 
 #### Test Implementation
-##### Run all CI tasks
+##### Run continuous integration test suite
     $ bundle exec rake
+Running this task executes the following tasks: `inch` `rubocop` `ci_flog` `ci_spec` `mutant`
+
+#### Test Documentation using Inch
+    $ bundle exec rake inch
+This task applies static code analysis to measure documentation quality. Inch also suggests improvements.
 
 ##### Run Guard
     $ bundle exec guard
+Guard keeps track of file changes and automatically runs the unit tests realted to changed files.
 
 ##### Run RSpec
     $ bundle exec rake spec
+This task runs Guard keeps track of file changes and automatically runs the unit tests realted to changed files.
 
 #### Test Tests using mutant
     $ bundle exec rake mutant
 
-#### Test Documentation using Inch
-    $ bundle exec rake inch
 
 #### Check and Correct static code metrics using Rubocop
     $ bundle exec rake rubocop

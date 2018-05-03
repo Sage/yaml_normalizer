@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Rename executable to normalize YAML files to "yaml_normalize"
+- Lower average complexity threshold to 6.5
 
 ### Removed
 - Remove parallel_tests

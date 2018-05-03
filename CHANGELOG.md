@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add executable "yaml_check" to check normalization of YAML files
 
 ### Changed
--
+- Rename executable to normalize YAML files to "yaml_normalize"
 
 ### Removed
 - Remove parallel_tests

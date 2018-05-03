@@ -38,11 +38,11 @@ it runs stand-alone as well.
 
 ## Usage
 ### Use executable files
-Yaml Normalizer provides you with two executables: `yaml_normalizer` and `yamlcheck`.
+Yaml Normalizer provides you with two executables: `yaml_normalize` and `yamlcheck`.
 This is how you run them in your terminal:
 
     $ yaml_check my_yaml_file.yml
-    $ yaml_normalizer my_yaml_file.yml
+    $ yaml_normalize my_yaml_file.yml
 
 ### Include Yaml Normalizer rake tasks
 In your Gemfile, add

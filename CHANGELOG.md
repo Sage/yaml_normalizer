@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+### Changed
+### Removed
+
+
+## [1.0.0] - 2018-05-04
+### Added
 - Add .ruby-version file to improve development experience
 - Add gem version badge to README
 - Add pry-doc

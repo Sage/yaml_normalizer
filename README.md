@@ -98,11 +98,10 @@ Guard keeps track of file changes and automatically runs the unit tests realted 
 
 ##### Run RSpec
     $ bundle exec rake spec
-This task runs Guard keeps track of file changes and automatically runs the unit tests realted to changed files.
+This task runs the full unit test suite based on RSpec. 
 
 #### Test Tests using mutant
     $ bundle exec rake mutant
-
 
 #### Check and Correct static code metrics using Rubocop
     $ bundle exec rake rubocop

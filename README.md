@@ -47,7 +47,7 @@ This is how you run them in your terminal:
 ### Include Yaml Normalizer rake tasks
 In your Gemfile, add
 
-      gem 'yaml_normalizer', git: 'git@github.com:Sage/yaml_normalizer.git', tag: 'v0.2.2', require: false
+      gem 'yaml_normalizer', git: 'git@github.com:Sage/yaml_normalizer.git', tag: 'v1.0.0', require: false
 In a Rails context, you might want to only add it to `:development` and `:test` groups.
 
 In your Rakefile, add

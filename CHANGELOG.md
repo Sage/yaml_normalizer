@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 ### Removed
 
+## [1.0.1] - 2018-05-04
+### Changed
+- Specify executables in Gemspec
+
 
 ## [1.0.0] - 2018-05-04
 ### Added

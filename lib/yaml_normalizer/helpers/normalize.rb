@@ -34,6 +34,11 @@ module YamlNormalizer
       def read(file)
         File.read(file, mode: 'r:bom|utf-8')
       end
+
+      def relative_path_for(file)
+        realpath = Pathname.new(file).realpath
+        realpath.relative_path_from(Pathname.new(Dir.pwd))
+      end
     end
   end
 end

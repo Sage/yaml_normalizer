@@ -3,8 +3,6 @@
 require './tmpfix/rake_application'
 require './spec/ci_helper'
 
-require 'bundler/gem_tasks'
-
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'yard'
@@ -45,7 +43,7 @@ task :mutant do
   mutant_sh = 'bundle exec mutant \
     --include lib \
     --require yaml_normalizer \
-    --use rspec YamlNormalizer*  2>&1'
+    --use rspec YamlNormalizer* 2>&1'
 
   ci_task('mutant', mutant_sh) do |out, success|
     success && out.split("\n").any? { |l| l == 'Coverage:        100.00%' }
@@ -59,7 +57,7 @@ end
 
 FlogTask.new do |config|
   config.dirs = ['lib']
-  config.threshold = 7.7
+  config.threshold = 6.5
   config.method = :average
   config.verbose = true
 end

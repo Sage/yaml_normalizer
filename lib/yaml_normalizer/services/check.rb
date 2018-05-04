@@ -43,7 +43,7 @@ module YamlNormalizer
       private
 
       def normalized?(file)
-        file = Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
+        file = relative_path_for(file)
         input = read(file)
         norm = normalize_yaml(input)
         check = input.eql?(norm)

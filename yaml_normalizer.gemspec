@@ -36,11 +36,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'inch'
   spec.add_development_dependency 'mutant-rspec'
-  spec.add_development_dependency 'parallel_tests'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'
-  # Ruby 2.4.0 isn't supported by the latest pry-doc today (2017-04-07)
-  # spec.add_development_dependency 'pry-doc'
+  spec.add_development_dependency 'pry-doc'
   spec.add_development_dependency 'redcarpet'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'

@@ -8,12 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add .ruby-version file to improve development experience
 - Add gem version badge to README
+- Add pry-doc
+- Add helper method to retrieve relative path for a file
+- Add executable "yaml_check" to check normalization of YAML files
 
 ### Changed
--
+- Clean up README
+- Rename executable to normalize YAML files to "yaml_normalize"
+- Lower average complexity threshold to 6.5
 
 ### Removed
--
+- Remove parallel_tests
+- Remove console and setup executables
+- Remove bundler/gem_tasks
 
 
 ## [0.3.0] - 2018-03-26

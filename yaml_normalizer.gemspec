@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'Apache-2.0'
   spec.files         = Dir['lib/**/*.rb']
   spec.bindir        = 'bin'
-  spec.executables   = 'yaml_normalizer'
+  spec.executables   = %w[yaml_check yaml_normalize]
   spec.require_paths = ['lib']
 
   spec.add_dependency 'peach', '~> 0.5'

@@ -25,24 +25,26 @@ module YamlNormalizer
 
       # Normalizes all YAML files defined on instantiation.
       def call
-        files.peach do |file|
-          if IsYaml.call(file)
-            normalize!(file)
-          else
-            warn "#{file} not a YAML file"
-          end
-        end
+        files.peach { |file| process(file) }
       end
 
       private
+
+      def process(file)
+        if IsYaml.call(file)
+          normalize!(file)
+        else
+          $stderr.print "#{file} not a YAML file\n"
+        end
+      end
 
       def normalize!(file)
         file = relative_path_for(file)
         if stable?(input = read(file), norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
-          warn "[NORMALIZED] #{file}"
+          $stderr.print "[NORMALIZED] #{file}\n"
         else
-          warn "[ERROR]      Could not normalize #{file}"
+          $stderr.print "[ERROR]      Could not normalize #{file}\n"
         end
       end
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'peach'
-require 'pathname'
 
 module YamlNormalizer
   module Services
@@ -26,21 +25,19 @@ module YamlNormalizer
 
       # Normalizes all YAML files defined on instantiation.
       def call
-        normalized = []
-
-        files.peach do |file|
-          if IsYaml.call(file)
-            normalized << normalized?(file)
-          else
-            normalized << nil
-            warn "#{file} not a YAML file"
-          end
-        end
-
-        normalized.all?
+        success = files.pmap { |file| process(file) }
+        success.all?
       end
 
       private
+
+      # process returns true on success and nil on error
+      def process(file)
+        return true if IsYaml.call(file) && normalized?(file)
+
+        $stderr.print "#{file} not a YAML file\n"
+        nil
+      end
 
       def normalized?(file)
         file = relative_path_for(file)
@@ -49,9 +46,9 @@ module YamlNormalizer
         check = input.eql?(norm)
 
         if check
-          $stdout.puts "[PASSED] already normalized #{file}"
+          $stdout.print "[PASSED] already normalized #{file}\n"
         else
-          $stdout.puts "[FAILED] normalization suggested for #{file}"
+          $stdout.print "[FAILED] normalization suggested for #{file}\n"
         end
 
         check

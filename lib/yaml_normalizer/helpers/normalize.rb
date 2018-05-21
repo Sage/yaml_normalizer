@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pathname'
+
 module YamlNormalizer
   module Helpers
     # This helper holds shared functionality to normalize a YAML string.

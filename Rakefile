@@ -57,7 +57,7 @@ end
 
 FlogTask.new do |config|
   config.dirs = ['lib']
-  config.threshold = 6.5
+  config.threshold = 6.3
   config.method = :average
   config.verbose = true
 end

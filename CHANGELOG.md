@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+- Reduce average code complexity threshold to 6.3
 - Use thread safe output in peach blocks
 - Only require `pathname` when used
 

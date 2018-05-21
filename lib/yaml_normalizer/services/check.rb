@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'peach'
-require 'pathname'
 
 module YamlNormalizer
   module Services

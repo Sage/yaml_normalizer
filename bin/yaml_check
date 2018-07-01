@@ -6,4 +6,5 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'yaml_normalizer'
 
-YamlNormalizer::Services::Check.call(*ARGV)
+passed = YamlNormalizer::Services::Check.call(*ARGV)
+exit 1 unless passed

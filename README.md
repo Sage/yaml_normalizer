@@ -47,7 +47,7 @@ This is how you run them in your terminal:
 ### Include Yaml Normalizer rake tasks
 In your Gemfile, add
 
-      gem 'yaml_normalizer', git: 'git@github.com:Sage/yaml_normalizer.git', tag: 'v1.0.0', require: false
+      gem 'yaml_normalizer', require: false
 In a Rails context, you might want to only add it to `:development` and `:test` groups.
 
 In your Rakefile, add
@@ -94,7 +94,7 @@ This task applies static code analysis to measure documentation quality. Inch al
 
 ##### Run Guard
     $ bundle exec guard
-Guard keeps track of file changes and automatically runs the unit tests realted to changed files.
+Guard keeps track of file changes and automatically runs the unit tests related to changed files.
 
 ##### Run RSpec
     $ bundle exec rake spec
@@ -125,4 +125,4 @@ on PRs if needed.
 Yaml Normalizer is available as open source under the terms of the
 [Apache-2.0 licence](https://github.com/Sage/yaml_normalizer/blob/master/LICENSE).
 
-Copyright (c) 2017-2018 Sage Group Plc. All rights reserved.
+Copyright (c) 2017-2019 Sage Group Plc. All rights reserved.

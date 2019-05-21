@@ -8,12 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+
+### Removed
+
+
+## [1.1.0] - 2019-05-21
+### Added
+- Add rubocop-performance gem
+
+### Changed
 - Update Ruby version to 2.5
 - Reduce average code complexity threshold to 6.3
 - Use thread safe output in peach blocks
 - Only require `pathname` when used
-
-### Removed
 
 
 ## [1.0.1] - 2018-05-04

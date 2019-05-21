@@ -17,7 +17,10 @@ task :inch do
   end
 end
 
-RuboCop::RakeTask.new # add rake tasks "rubocop" and "rubocop:auto_correct"
+# Add rake tasks "rubocop" and "rubocop:auto_correct"
+RuboCop::RakeTask.new do |task|
+  task.requires << 'rubocop-performance'
+end
 Rake::Task[:rubocop].clear # remove default task "rake rubocop"
 
 desc 'Run RuboCop'

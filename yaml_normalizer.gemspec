@@ -3,7 +3,6 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yaml_normalizer/version'
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = 'yaml_normalizer'
   spec.version       = YamlNormalizer::VERSION
@@ -43,6 +42,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'redcarpet'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'yard'
 end
-# rubocop:enable Metrics/BlockLength

@@ -6,8 +6,8 @@ require 'yaml_normalizer/version'
 Gem::Specification.new do |spec|
   spec.name          = 'yaml_normalizer'
   spec.version       = YamlNormalizer::VERSION
-  spec.authors       = ['Wolfgang Teuber']
-  spec.email         = ['wolfgang.teuber@sage.com']
+  spec.authors       = ['Wolfgang Teuber', 'Miquel Oliete']
+  spec.email         = ['miquel.oliete@sage.com']
 
   spec.summary       = 'Yaml Normalizer normalizes YAML files'
   spec.description   = "Yaml Normalizer follows the notion that there is

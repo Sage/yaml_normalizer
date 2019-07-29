@@ -116,6 +116,28 @@ RSpec.describe YamlNormalizer::Services::Normalize do
         end
       end
     end
+
+    context 'Psych changes sanitization' do
+      let(:file) { 'real_life_sample.yml' }
+      let(:expected) { 'real_life_sample_normalized.yml' }
+
+      it 'filters out the strange whitespace changes introduced by Psych parser' do
+        Tempfile.open(file) do |yaml|
+          yaml.write(File.read(path + file))
+          yaml.rewind
+          expect do
+            stderr = $stderr
+            $stderr = StringIO.new
+            described_class.new(yaml.path).call
+            $stderr = stderr
+          end.to(
+            change { File.read(yaml.path) }
+            .from(File.read("#{path}#{file}"))
+            .to(File.read("#{path}#{expected}"))
+          )
+        end
+      end
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength

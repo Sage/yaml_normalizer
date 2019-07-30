@@ -11,6 +11,7 @@ module YamlNormalizer
     #   result = normalize.call
     class Normalize < Base
       include Helpers::Normalize
+      include Helpers::ParamParser
 
       # files is a sorted array of file path Strings
       attr_reader :files
@@ -19,6 +20,7 @@ module YamlNormalizer
       # more String that are interpreted as file glob pattern.
       # @param *args [Array<String>] a list of file glob patterns
       def initialize(*args)
+        parse_params(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq
       end

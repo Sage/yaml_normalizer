@@ -7,6 +7,8 @@ RSpec.describe YamlNormalizer::Services::Check do
   let(:path) { "#{SpecConfig.data_path}#{File::SEPARATOR}" }
   let(:args) { ["#{path}#{name}"] }
 
+  include_examples :args_receving_service
+
   context 'parially invalid globbing inputs' do
     subject { described_class.new(*args) }
     let(:args) { ["#{path}*.1", :invalid, "#{path}1.*"] }

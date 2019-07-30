@@ -4,6 +4,7 @@ $LOAD_PATH.unshift File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 
 require './spec/ci_helper'
 
+ENV['ENV'] = 'test'
 unless defined?(Mutant)
   require 'simplecov'
   SimpleCov.start do

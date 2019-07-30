@@ -16,11 +16,11 @@ module YamlNormalizer
           opts.banner = "Usage: #{program_name} [options] file1, file2..."
           opts.on('-v', '--version', 'Prints the yaml_normalizer version') do
             print_version
-            exit(0)
+            exit_success
           end
           opts.on('-h', '--help', 'Prints this help') do
             print(opts)
-            exit(0)
+            exit_success
           end
         end.parse(args)
       end
@@ -35,6 +35,10 @@ module YamlNormalizer
 
       def program_name
         $PROGRAM_NAME.split('/').last
+      end
+
+      def exit_success
+        exit unless ENV['ENV'] == 'test'
       end
     end
   end

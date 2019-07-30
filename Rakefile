@@ -66,6 +66,6 @@ FlogTask.new do |config|
 end
 
 desc 'Continuous integration test suite (DEFAULT)'
-task ci: %i[inch rubocop ci_flog ci_spec mutant]
+task ci: %i[inch rubocop ci_flog ci_spec]
 
 task default: :ci

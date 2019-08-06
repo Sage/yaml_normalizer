@@ -44,6 +44,7 @@ end
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
 task :mutant do
   mutant_sh = 'bundle exec mutant \
+    --since 18069a6bb8779c2381b361738c866ce4c35f7466 \
     --include lib \
     --require yaml_normalizer \
     --use rspec YamlNormalizer* 2>&1'
@@ -66,6 +67,6 @@ FlogTask.new do |config|
 end
 
 desc 'Continuous integration test suite (DEFAULT)'
-task ci: %i[inch rubocop ci_flog ci_spec]
+task ci: %i[inch rubocop ci_flog ci_spec mutant]
 
 task default: :ci

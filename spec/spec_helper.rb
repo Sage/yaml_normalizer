@@ -4,6 +4,7 @@ $LOAD_PATH.unshift File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 
 require './spec/ci_helper'
 
+ENV['ENV'] = 'test'
 unless defined?(Mutant)
   require 'simplecov'
   SimpleCov.start do
@@ -12,6 +13,12 @@ unless defined?(Mutant)
 end
 
 require 'yaml_normalizer'
+
+Dir.foreach(File.join(File.dirname(__FILE__), 'shared_examples')) do |f|
+  next if ['.', '..'].include?(f)
+
+  require File.join(File.dirname(__FILE__), 'shared_examples', f)
+end
 
 # Configure unit test suite
 module SpecConfig

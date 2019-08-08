@@ -7,3 +7,4 @@ module YamlNormalizer
 end
 
 require 'yaml_normalizer/helpers/normalize'
+require 'yaml_normalizer/helpers/param_parser'

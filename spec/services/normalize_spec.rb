@@ -9,6 +9,8 @@ RSpec.describe YamlNormalizer::Services::Normalize do
   let(:path) { "#{SpecConfig.data_path}#{File::SEPARATOR}" }
   let(:args) { ["#{path}#{file}"] }
 
+  include_examples :args_receving_service
+
   context 'invalid args, no arg matches file' do
     subject { described_class.new(*args).call }
     let(:args) { ['lol', :foo, nil] }

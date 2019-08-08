@@ -44,6 +44,20 @@ This is how you run them in your terminal:
     $ yaml_check my_yaml_file.yml
     $ yaml_normalize my_yaml_file.yml
 
+To check the current version of yaml_normalizer type:
+   $ yaml_check --version
+
+   or
+
+   $ yaml_normalize -v
+
+To see the help message for yaml_normalizer type:
+   $ yaml_check --help
+
+    or
+
+   $ yaml_normalize -h
+
 ### Include Yaml Normalizer rake tasks
 In your Gemfile, add
 

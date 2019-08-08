@@ -44,7 +44,7 @@ end
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
 task :mutant do
   mutant_sh = 'bundle exec mutant \
-    --since v1.2.0 \
+    --since 0baa016e8a89b81b35e74ff988594dc11fbd48f5 \
     --include lib \
     --require yaml_normalizer \
     --use rspec YamlNormalizer* 2>&1'

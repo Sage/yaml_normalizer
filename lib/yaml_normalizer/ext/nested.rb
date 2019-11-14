@@ -17,21 +17,21 @@ module YamlNormalizer
       #   => {"a"=>{"b"=>{"c"=>1}}, "b"=>{"x"=>2, "y"=>{"ok"=>true}, "z"=>4}}
       # @return [Hash] tree-shaped Hash
       def nested
-        tree = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
-        each { |key, val| nest_key(tree, key.to_s, val) }
-        tree.default_proc = nil
+        tree = {}
+        each { |key, val| nest_key(tree, key, val) }
         tree
       end
 
       private
 
-      def nest_key(hash, key, val)
-        if key.include?('.')
-          keys = key.split('.')
-          hash.dig(*keys[0..-2])[keys.fetch(-1)] = val
-        else
-          hash[key] = val
+      def nest_key(hash, dotted_key, val)
+        keys = dotted_key.to_s.split('.')
+        last_key = keys.pop.to_s
+        sub_hash = hash
+        keys.each do |key|
+          sub_hash = (sub_hash[key] ||= {})
         end
+        sub_hash[last_key] = val
       end
     end
   end

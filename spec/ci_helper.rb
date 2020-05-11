@@ -55,7 +55,7 @@ end
 # @param time [Time] the message to be printed
 def ci_end_msg(msg, success, time)
   puts '################################################'
-  puts "Finished in #{format('%.2f', Time.new - time)} seconds."
+  puts "Finished in #{format('%<timedelta>.2f', timedelta: Time.new - time)} seconds."
   print '[PASSED] ' if success
   print '[FAILED] ' unless success
   puts msg

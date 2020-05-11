@@ -10,4 +10,4 @@ module TempFixForRakeLastComment
   end
 end
 
-Rake::Application.send :include, TempFixForRakeLastComment
+Rake::Application.send :include, TempFixForRakeLastComment # rubocop:disable Lint/SendWithMixinArgument

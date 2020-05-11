@@ -13,7 +13,9 @@ RSpec.describe YamlNormalizer::Ext::Nested do
         'b.y.two' => nil,
         'no_dot' => 'ok',
         3 => String,
-        sym: 'ok' }
+        sym: 'ok',
+        nil => 'nil',
+        '' => 'empty' }
     end
 
     it 'does not modify the original object' do
@@ -26,11 +28,16 @@ RSpec.describe YamlNormalizer::Ext::Nested do
                                       'y' => { 'one' => true, 'two' => nil } },
                              'no_dot' => 'ok',
                              '3' => String,
-                             'sym' => 'ok')
+                             'sym' => 'ok',
+                             '' => 'empty')
     end
 
     it 'resets the default_proc' do
       expect(subject[:unknown]).to be_nil
+    end
+
+    it 'does not create unknown keys on access' do
+      expect(subject.dig('a', 'unknown')).to be_nil
     end
   end
 

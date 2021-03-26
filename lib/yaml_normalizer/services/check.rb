@@ -35,9 +35,9 @@ module YamlNormalizer
 
       # process returns true on success and nil on error
       def process(file)
+        $stdout.print "Processing #{file}\n"
         return true if IsYaml.call(file) && normalized?(file)
 
-        $stderr.print "#{file} not a YAML file\n"
         nil
       end
 
@@ -48,9 +48,9 @@ module YamlNormalizer
         check = input.eql?(norm)
 
         if check
-          $stdout.print "[PASSED] already normalized #{file}\n"
+          $stdout.print "\t[PASSED] file is already normalized\n\n"
         else
-          $stdout.print "[FAILED] normalization suggested for #{file}\n"
+          $stdout.print "\t[FAILED] file needs normalization\n\n"
         end
 
         check

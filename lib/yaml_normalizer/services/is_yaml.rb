@@ -37,7 +37,8 @@ module YamlNormalizer
       # boolean value
       def parseable?
         parse(read(file))
-      rescue Psych::SyntaxError
+      rescue Psych::SyntaxError => e
+        $stderr.print "\t[ERROR] #{file} is not parseable as YAML - #{e.message}\n\n"
         false
       end
 

@@ -30,9 +30,11 @@ RSpec.describe YamlNormalizer::Services::Normalize do
 
     context 'invalid YAML file' do
       let(:file) { 'invalid.yml' }
-      it 'prints "not a YAML file" message to STDERR' do
+
+      it 'prints an error message to STDERR' do
         expect { subject }
-          .to output("#{path}invalid.yml not a YAML file\n").to_stderr
+          .to output("\t[ERROR] #{path}#{file} is not parseable as YAML - (<unknown>): mapping values are not allowed in this context at line 3 column 7\n\n")
+          .to_stderr
       end
     end
 
@@ -72,9 +74,10 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           yaml.write(File.read(path + file))
           yaml.rewind
           f_abs = Pathname.new(yaml.path).realpath
-          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
+
           expect { described_class.new(yaml.path).call }
-            .to output("[NORMALIZED] #{f}\n").to_stderr
+            .to output("Processing #{f_abs}\n\t[PASSED] file has been normalized\n\n")
+            .to_stdout
         end
       end
     end
@@ -87,9 +90,10 @@ RSpec.describe YamlNormalizer::Services::Normalize do
           yaml.write(File.read(path + file))
           yaml.rewind
           f_abs = Pathname.new(yaml.path).realpath
-          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
+
           expect { described_class.new(yaml.path).call }
-            .to output("[NORMALIZED] #{f}\n").to_stderr
+            .to output("Processing #{f_abs}\n\t[PASSED] file has been normalized\n\n")
+            .to_stdout
         end
       end
     end
@@ -111,10 +115,10 @@ RSpec.describe YamlNormalizer::Services::Normalize do
             .with(File.read(path + other)).and_return(defect)
 
           f_abs = Pathname.new(yaml.path).realpath
-          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
+
           expect { normalize.call }
-            .to output("[ERROR]      Could not normalize #{f}\n")
-            .to_stderr
+            .to output("Processing #{f_abs}\n\t[FAILED] file could not normalized\n\n")
+            .to_stdout
         end
       end
     end

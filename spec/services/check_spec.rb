@@ -30,9 +30,10 @@ RSpec.describe YamlNormalizer::Services::Check do
 
       it { is_expected.to eql(false) }
 
-      it 'prints "not a YAML file" message to STDERR' do
+      it 'prints an error message to STDERR' do
         expect { subject }
-          .to output("#{path}#{name} not a YAML file\n").to_stderr
+          .to output("\t[ERROR] #{path}#{name} is not parseable as YAML - (<unknown>): mapping values are not allowed in this context at line 3 column 7\n\n")
+          .to_stderr
       end
     end
 
@@ -58,9 +59,8 @@ RSpec.describe YamlNormalizer::Services::Check do
 
           it 'prints out an error message with relative file path' do
             f_abs = Pathname.new(file.path).realpath
-            f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
             expect { subject }
-              .to output("[FAILED] normalization suggested for #{f}\n")
+              .to output("Processing #{f_abs}\n\t[FAILED] file needs normalization\n\n")
               .to_stdout
           end
         end
@@ -72,9 +72,9 @@ RSpec.describe YamlNormalizer::Services::Check do
 
           it 'prints out a success message with relative file path' do
             f_abs = Pathname.new(file.path).realpath
-            f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
             expect { subject }
-              .to output("[PASSED] already normalized #{f}\n").to_stdout
+              .to output("Processing #{f_abs}\n\t[PASSED] file is already normalized\n\n")
+              .to_stdout
           end
         end
       end
@@ -84,9 +84,9 @@ RSpec.describe YamlNormalizer::Services::Check do
 
         it 'passes if YAML file is already normalized' do
           f_abs = Pathname.new(file.path).realpath
-          f = f_abs.relative_path_from(Pathname.new(Dir.pwd))
           expect { subject }
-            .to output("[PASSED] already normalized #{f}\n").to_stdout
+            .to output("Processing #{f_abs}\n\t[PASSED] file is already normalized\n\n")
+            .to_stdout
         end
       end
     end

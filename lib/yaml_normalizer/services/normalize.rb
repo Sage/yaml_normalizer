@@ -33,20 +33,18 @@ module YamlNormalizer
       private
 
       def process(file)
-        if IsYaml.call(file)
-          normalize!(file)
-        else
-          $stderr.print "#{file} not a YAML file\n"
-        end
+        normalize!(file) if IsYaml.call(file)
       end
 
       def normalize!(file)
+        $stdout.print "Processing #{file}\n"
         file = relative_path_for(file)
+
         if stable?(input = read(file), norm = normalize_yaml(input))
           File.open(file, 'w') { |f| f.write(norm) }
-          $stderr.print "[NORMALIZED] #{file}\n"
+          $stdout.print "\t[PASSED] file has been normalized\n\n"
         else
-          $stderr.print "[ERROR]      Could not normalize #{file}\n"
+          $stdout.print "\t[FAILED] file could not normalized\n\n"
         end
       end
 

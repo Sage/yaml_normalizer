@@ -11,13 +11,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [2.0.0.rc1] - 2023-08-14
+### Changed
+- Update Ruby version to 3.2
+
 ## [1.2.0] - 2019-08-08
 ### Added
 - Versioning and help messages for CLI
 
 ### Changed
 - Extended allowed line length to 120
-- Change the mutant to only scan the latest commits 
+- Change the mutant to only scan the latest commits
 
 
 ## [1.1.0] - 2019-05-21

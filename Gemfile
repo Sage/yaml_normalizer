@@ -2,8 +2,8 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 2.5'
+ruby '~> 3.2'
 
-gem 'simplecov', require: false, group: :test
+gem 'simplecov', '0.21.2',  require: false, group: :test
 
 gemspec

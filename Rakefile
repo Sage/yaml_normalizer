@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require './tmpfix/rake_application'
 require './spec/ci_helper'
 
 require 'rspec/core/rake_task'

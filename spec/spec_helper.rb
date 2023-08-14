@@ -7,6 +7,9 @@ require './spec/ci_helper'
 ENV['ENV'] = 'test'
 unless defined?(Mutant)
   require 'simplecov'
+  require 'simplecov_json_formatter'
+
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
   SimpleCov.start do
     add_filter '/spec'
   end

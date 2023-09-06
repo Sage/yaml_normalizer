@@ -2,5 +2,5 @@
 
 module YamlNormalizer
   # The current Yaml Normalizer version
-  VERSION = '2.0.0.rc3'
+  VERSION = '2.0.0.rc4'
 end

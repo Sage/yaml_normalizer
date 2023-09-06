@@ -3,11 +3,12 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yaml_normalizer/version'
+
 Gem::Specification.new do |spec|
   spec.name          = 'yaml_normalizer'
   spec.version       = YamlNormalizer::VERSION
-  spec.authors       = ['Wolfgang Teuber', 'Jan Taras']
-  spec.email         = ['jan.taras@sage.com']
+  spec.authors       = ['The Sage Group plc']
+  spec.email         = ['support@sageone.com']
 
   spec.summary       = 'Yaml Normalizer normalizes YAML files'
   spec.description   = "Yaml Normalizer follows the notion that there is
@@ -21,6 +22,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'bin'
   spec.executables   = %w[yaml_check yaml_normalize]
   spec.require_paths = ['lib']
+
+  spec.required_ruby_version = '>= 3.0'
 
   spec.add_dependency 'peach', '~> 0.5'
   spec.add_dependency 'psych', '~> 5.0'
@@ -43,5 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'yard'
 end

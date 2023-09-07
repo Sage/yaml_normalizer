@@ -1,6 +1,6 @@
 # Yaml Normalizer
 
-[![Build Status](https://travis-ci.org/Sage/yaml_normalizer.svg?branch=master)](https://travis-ci.org/Sage/yaml_normalizer)
+[![Build Status](https://github.com/Sage/yaml_normalizer/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Sage/yaml_normalizer/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8dccb6c06fcd8bc0e587/maintainability)](https://codeclimate.com/github/Sage/yaml_normalizer/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8dccb6c06fcd8bc0e587/test_coverage)](https://codeclimate.com/github/Sage/yaml_normalizer/test_coverage)
 [![Gem Version](https://badge.fury.io/rb/yaml_normalizer.svg)](https://badge.fury.io/rb/yaml_normalizer)
@@ -112,7 +112,7 @@ Guard keeps track of file changes and automatically runs the unit tests related 
 
 ##### Run RSpec
     $ bundle exec rake spec
-This task runs the full unit test suite based on RSpec. 
+This task runs the full unit test suite based on RSpec.
 
 #### Test Tests using mutant
     $ bundle exec rake mutant

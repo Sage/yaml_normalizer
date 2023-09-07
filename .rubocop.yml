@@ -2,7 +2,7 @@ require:
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.2
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:

@@ -24,7 +24,7 @@ end
 # @param cmd [String] command to be executed in child process
 # @param tee [Boolean] true if output should be printed (default)
 # rubocop:disable Metrics/MethodLength
-def ci_run(cmd, tee = true)
+def ci_run(cmd, tee: true)
   time = Time.new
   output = StringIO.new
   IO.popen(cmd) do |f|

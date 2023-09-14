@@ -23,8 +23,10 @@ module YamlNormalizer
       # @return [String] normalized YAML string
       def normalize_yaml(yaml)
         hashes = parse(yaml).transform
-        hashes.each { |hash| hash.extend(Ext::SortByKey) }
-        hashes.map(&:sort_by_key).map(&:to_yaml).join
+        hashes.map do |hash|
+          hash.extend(Ext::SortByKey)
+          hash.sort_by_key.to_yaml
+        end.join
       end
 
       private
@@ -39,7 +41,7 @@ module YamlNormalizer
 
       def relative_path_for(file)
         realpath = Pathname.new(file).realpath
-        realpath.relative_path_from(Pathname.new(Dir.pwd))
+        realpath.relative_path_from(Dir.pwd)
       end
     end
   end

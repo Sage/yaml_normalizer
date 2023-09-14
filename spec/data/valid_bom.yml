@@ -1,10 +1,8 @@
----
+﻿---
 this: is
 a:
 - valid
 - yaml
 - file
-having:
-  namespaced: values
 ---
 that: one, too

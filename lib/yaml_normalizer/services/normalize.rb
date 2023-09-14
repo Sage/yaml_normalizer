@@ -20,6 +20,7 @@ module YamlNormalizer
       # more String that are interpreted as file glob pattern.
       # @param *args [Array<String>] a list of file glob patterns
       def initialize(*args)
+        super
         parse_params(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq
@@ -43,7 +44,7 @@ module YamlNormalizer
       def normalize!(file)
         file = relative_path_for(file)
         if stable?(input = read(file), norm = normalize_yaml(input))
-          File.open(file, 'w') { |f| f.write(norm) }
+          File.write(file, norm)
           $stderr.print "[NORMALIZED] #{file}\n"
         else
           $stderr.print "[ERROR]      Could not normalize #{file}\n"

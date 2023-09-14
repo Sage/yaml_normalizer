@@ -1,0 +1,10 @@
+---
+includes:
+  - lib
+requires:
+  - yaml_normalizer
+integration:
+  name: rspec
+matcher:
+  subjects:
+    - YamlNormalizer*

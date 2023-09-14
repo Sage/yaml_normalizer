@@ -1,9 +1,7 @@
 require:
   - rubocop-performance
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.2
-
-# Commonly used screens these days easily fit more than 80 characters.
-Metrics/LineLength:
-  Max: 120
+  TargetRubyVersion: 3.0
+  NewCops: enable

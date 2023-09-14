@@ -20,6 +20,7 @@ module YamlNormalizer
       # more Strings that are interpreted as file glob pattern.
       # @param *args [Array<String>] a list of file glob patterns
       def initialize(*args)
+        super
         parse_params(*args)
         files = args.each_with_object([]) { |a, o| o << Dir[a.to_s] }
         @files = files.flatten.sort.uniq
@@ -37,7 +38,7 @@ module YamlNormalizer
       def process(file)
         return true if IsYaml.call(file) && normalized?(file)
 
-        $stderr.print "#{file} not a YAML file\n"
+        $stderr.print "#{file} is not a YAML file\n"
         nil
       end
 

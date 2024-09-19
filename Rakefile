@@ -34,7 +34,7 @@ end
 task :ci_spec do
   ci_task('CI spec', 'bundle exec rspec 2>&1') do |out, success|
     out_lines = out.split("\n")
-    success &&= out_lines[-3].match?(/ 0 failures/)
+    success &&= out_lines[-3].include?(' 0 failures')
     success &&= out_lines[-1].match?(/LOC \(100\.0%\) covered\.$/)
     success
   end
@@ -42,14 +42,10 @@ end
 
 desc 'Mutation testing to check mutation coverage of current RSpec test suite'
 task :mutant do
-  mutant_sh = 'bundle exec mutant \
-    --since 0baa016e8a89b81b35e74ff988594dc11fbd48f5 \
-    --include lib \
-    --require yaml_normalizer \
-    --use rspec YamlNormalizer* 2>&1'
+  mutant_sh = 'bundle exec mutant run 2>&1'
 
   ci_task('mutant', mutant_sh) do |out, success|
-    success && out.split("\n").any? { |l| l == 'Coverage:        100.00%' }
+    success && out.split("\n").any?('Coverage:        100.00%')
   end
 end
 
@@ -66,6 +62,6 @@ FlogTask.new do |config|
 end
 
 desc 'Continuous integration test suite (DEFAULT)'
-task ci: %i[inch rubocop ci_flog ci_spec mutant]
+task ci: %i[ci_spec inch ci_flog rubocop]
 
 task default: :ci

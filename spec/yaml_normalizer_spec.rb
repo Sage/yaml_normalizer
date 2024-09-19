@@ -4,6 +4,6 @@ require 'spec_helper'
 
 RSpec.describe YamlNormalizer do
   it 'has a version number' do
-    expect(YamlNormalizer::VERSION).not_to be nil
+    expect(YamlNormalizer::VERSION).not_to be_nil
   end
 end

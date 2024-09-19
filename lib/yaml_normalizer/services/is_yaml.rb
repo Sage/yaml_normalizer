@@ -19,6 +19,7 @@ module YamlNormalizer
       # String.
       # @param file [String] file path to be regarded
       def initialize(file)
+        super
         @file = file.to_s
       end
 

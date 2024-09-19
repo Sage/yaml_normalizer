@@ -28,6 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'peach', '~> 0.5'
   spec.add_dependency 'psych', '~> 5.0'
   spec.add_dependency 'rake', '< 14.0'
-
-  spec.metadata['rubygems_mfa_required'] = 'true'
 end
